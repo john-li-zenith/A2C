@@ -50,6 +50,7 @@ coverage.xml
 *.pot
 media/
 email/
+local_settings.py
 
 # Sphinx documentation
 docs/_build/
