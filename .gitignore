@@ -51,6 +51,8 @@ coverage.xml
 media/
 email/
 local_settings.py
+*.db
+*.sqlite3
 
 # Sphinx documentation
 docs/_build/

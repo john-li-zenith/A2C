@@ -31,6 +31,14 @@ TEMPLATE_DEBUG = True
 ALLOWED_HOSTS = []
 
 
+
+ADMINS = (
+    # ('Your Name', 'your_email@domain.com'),
+)
+
+MANAGERS = ADMINS
+
+
 # Application definition
 
 INSTALLED_APPS = (
@@ -40,7 +48,32 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'a2c',
+    'accounts',
+    'apps',
+    'feincms',
+    'feincms.module.blog',
+    'feincms.module.page',
+    'feincms.module.medialibrary',  
+
+    'mptt',
+
+
+
 )
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.debug',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.media',
+    'django.core.context_processors.request',
+    'django.core.context_processors.static',
+
+    'feincms.context_processors.add_page_if_missing',
+)
+
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -49,6 +82,13 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+)
+
+
+
+TEMPLATE_LOADERS = (
+    'django.template.loaders.filesystem.Loader',
+    'django.template.loaders.app_directories.Loader',
 )
 
 ROOT_URLCONF = 'a2c.urls'
@@ -61,8 +101,8 @@ WSGI_APPLICATION = 'a2c.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': '',
     }
 }
 
@@ -83,6 +123,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+MEDIA_URL = '/media/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 STATIC_URL = '/static/'
 
 
