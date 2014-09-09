@@ -17,7 +17,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
@@ -42,6 +42,7 @@ MANAGERS = ADMINS
 # Application definition
 
 INSTALLED_APPS = (
+    'a2c',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -49,7 +50,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'a2c',
+    
     'accounts',
     'apps',
     'feincms',

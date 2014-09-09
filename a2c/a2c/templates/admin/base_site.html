@@ -1,0 +1,9 @@
+{% extends "admin/base.html" %}
+
+{% block title %}{{ title }} | {{ site_title|default:_('App2China.net Admin Portal') }}{% endblock %}
+
+{% block branding %}
+<div style="text-align:center;"><h1 id="site-name"><a href="{% url 'admin:index' %}">{{ site_header|default:_('App2China.net Admin Portal') }}</a></h1><p>Powered by Zenith Technology LLC</p></div>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
