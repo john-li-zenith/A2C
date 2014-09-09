@@ -24,6 +24,7 @@ admin.autodiscover()
 
 urlpatterns = patterns(
     '',
+    url(r'^accounts/', include('registration.backends.default.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
         'document_root': os.path.join(BASE_DIR, 'media')}),
