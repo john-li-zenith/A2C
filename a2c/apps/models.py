@@ -26,10 +26,35 @@ class App(models.Model):
     description=models.TextField()
     category=models.ForeignKey(AppCategory,blank=True, null=True)
     user=models.ForeignKey(User)
-    appfile = models.FileField(upload_to='apps/%Y/%m/%d')
+    appkey=models.CharField(max_length=100,blank=True,null=True)
+    appfile = models.FileField(upload_to='apps/'+user.id+'/%Y/%m/%d')
+    uploaded=models.DateTimeField(auto_now_add=True)
     
+    def has_appkey(self):
+        if self.appkey:
+            return True
+        return False
+    
+    def get_category(self):
+        return self.category
+        
+    def get_user_id(self):
+        return self.user.id
+        
+    def get_user(self):
+        return '%s %s' % (self.user.first_name,self.user.last_name)
+        
+    def __unicode__(self):
+        return self.name
     
 class AppForm(ModelForm):
     class Meta:
         model = App
         fields = ['name', 'description', 'category', 'appfile']
+        
+class AppKey(models.Model):
+    appkey=models.CharField(max_length=200)
+    is_used=models.BooleanField()
+    
+    def __unicode__(self):
+        return self.appkey
