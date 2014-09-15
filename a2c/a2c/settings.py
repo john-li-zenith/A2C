@@ -50,7 +50,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    
+    'django-creditcard-fields',
     'accounts',
     'apps',
     'feincms',
@@ -61,6 +61,7 @@ INSTALLED_APPS = (
     'mptt',
     'registration',
     'south',
+    'easy_thumbnails',
 
 )
 
@@ -133,6 +134,14 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 MEDIA_URL = '/media/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 STATIC_URL = '/static/'
+
+
+# Easy Thumbnails
+
+SOUTH_MIGRATION_MODULES = {
+    'easy_thumbnails': 'easy_thumbnails.south_migrations',
+}
+
 
 
 try:
