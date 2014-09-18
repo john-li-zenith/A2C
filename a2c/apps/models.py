@@ -4,6 +4,7 @@ from django.utils.encoding import python_2_unicode_compatible
 from django.contrib.auth.models import User
 from django.forms import ModelForm
 from easy_thumbnails.fields import ThumbnailerImageField as thumbfield
+from django_countries.fields import CountryField
 
 
 @python_2_unicode_compatible

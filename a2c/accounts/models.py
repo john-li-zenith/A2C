@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 from django import forms
 from django.forms import ModelForm
 from creditcard.fields import CreditCardField, ExpiryDateField, VerificationValueField
+from django_countries.fields import CountryField
+from django.utils.translation import ugettext_lazy as _
 
 
 class Contact(models.Model):
@@ -23,8 +25,12 @@ class Contact(models.Model):
     passport=models.CharField(max_length=20)
     passport_scan=models.ImageField(upload_to='account/passport/%Y/%m/%d',help_text='In JPG or PNG format. Preferably in color.')
     passport_scan_hand=models.ImageField(upload_to='account/passport/%Y/%m/%d',help_text='In JPG or PNG format. Some app stores require the scan to show a hand holding the passport.')
-    company_address=models.CharField(max_length=100)
-    allow_to_upload=models.BooleanField(default=False,blank=True,null=True)
+    street = models.CharField(_('street'), max_length=200,null=True)
+    city = models.CharField(_('city'), max_length=200,null=True)
+    models.CharField(_('state'),max_length=2, null=True)
+    zipcode = models.CharField(_('zip code'), max_length=200,null=True)
+    country = CountryField(_("country"),null=True)
+    allow_to_upload=models.BooleanField(default=False,blank=True)
     
 class CreditCard(models.Model):
     user=models.ForeignKey(User)
@@ -42,4 +48,4 @@ class PaymentForm(forms.Form):
 class ContactForm(ModelForm):
     class Meta:
         model = Contact
-        exclude = ['user']
+        exclude = ['user', 'allow_to_upload']
