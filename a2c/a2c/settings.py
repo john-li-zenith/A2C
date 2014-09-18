@@ -62,6 +62,7 @@ INSTALLED_APPS = (
     'registration',
     'south',
     'easy_thumbnails',
+    'plans',
 
 )
 
@@ -77,6 +78,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.media',
     'django.core.context_processors.request',
     'django.core.context_processors.static',
+    'plans.context_processors.account_status',
 
     'feincms.context_processors.add_page_if_missing',
 )
@@ -142,6 +144,21 @@ SOUTH_MIGRATION_MODULES = {
     'easy_thumbnails': 'easy_thumbnails.south_migrations',
 }
 
+
+# Django Plan
+
+CURRENCY = 'USD'
+
+INVOICE_COUNTER_RESET = 'yearly'
+
+INVOICE_NUMBER_FROMAT = "{{ invoice.number }}/{{ invoice.issued|date='m/FV/Y' }}"
+
+INVOICE_TEMPLATE = 'plans/invoices/PL_EN.html'
+
+PLAN_EXPIRATION_REMIND = [1, 3 , 7]
+
+from decimal import Decimal
+TAX = Decimal(8.75) #for 8.75% VAT
 
 
 try:

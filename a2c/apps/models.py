@@ -82,5 +82,5 @@ class App(models.Model):
 class AppForm(ModelForm):
     class Meta:
         model = App
-        fields = ['name','name_zh','description_short','description_long', 'icon_512','icon_72', 'appfile','screenshot_1'
+        fields = ['name','name_zh','description_short','description_long', 'icon_512','icon_72','screenshot_1'
         ,'screenshot_2','screenshot_3','screenshot_4','screenshot_5','screenshot_6','screenshot_7','screenshot_3','screenshot_9','screenshot_10']

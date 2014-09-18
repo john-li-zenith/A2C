@@ -2,6 +2,7 @@ from django.db import models
 from django.forms import ModelForm
 from django.contrib.auth.models import User
 from django import forms
+from django.forms import ModelForm
 from creditcard.fields import CreditCardField, ExpiryDateField, VerificationValueField
 
 
@@ -23,6 +24,7 @@ class Contact(models.Model):
     passport_scan=models.ImageField(upload_to='account/passport/%Y/%m/%d',help_text='In JPG or PNG format. Preferably in color.')
     passport_scan_hand=models.ImageField(upload_to='account/passport/%Y/%m/%d',help_text='In JPG or PNG format. Some app stores require the scan to show a hand holding the passport.')
     company_address=models.CharField(max_length=100)
+    allow_to_upload=models.BooleanField(default=False,blank=True,null=True)
     
 class CreditCard(models.Model):
     user=models.ForeignKey(User)
@@ -36,3 +38,8 @@ class PaymentForm(forms.Form):
     card_number = CreditCardField(required=True)
     expiry_date = ExpiryDateField(required=True)
     card_code = VerificationValueField(required=True)
+    
+class ContactForm(ModelForm):
+    class Meta:
+        model = Contact
+        exclude = ['user']
