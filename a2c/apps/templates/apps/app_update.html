@@ -5,6 +5,7 @@
 {% block child%}
 {% include 'accounts/dash_navi.html' %}
 {% endblock %}
+
 <form action="" method="post">
     {% csrf_token %}
     {{ form.as_p }}

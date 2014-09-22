@@ -33,8 +33,8 @@ urlpatterns = patterns(
     '',
     url(r'^accounts/', include('registration.backends.default.urls')),
     url(r'^accounts/', include('django.contrib.auth.urls')),
-    #url(r'^apps/',include('apps.urls')),
-    #url(r'^accounts/',include('accounts.urls')),
+    url(r'^apps/',include('apps.urls')),
+    url(r'^accounts/',include('accounts.urls')),
     url(r'^plan/', include('plans.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {

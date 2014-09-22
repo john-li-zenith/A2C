@@ -64,6 +64,8 @@ INSTALLED_APPS = (
     'south',
     'easy_thumbnails',
     'plans',
+    'localflavor',
+    #'getpaid',
 
 )
 
@@ -150,6 +152,8 @@ SOUTH_MIGRATION_MODULES = {
 
 CURRENCY = 'USD'
 
+DEFAULT_FROM_EMAIL='example@example.com' # need to be changed before production
+
 INVOICE_COUNTER_RESET = 'yearly'
 
 INVOICE_NUMBER_FROMAT = "{{ invoice.number }}/{{ invoice.issued|date='m/FV/Y' }}"
@@ -160,6 +164,19 @@ PLAN_EXPIRATION_REMIND = [1, 3 , 7]
 
 from decimal import Decimal
 TAX = Decimal(8.75) #for 8.75% VAT
+
+ISSUER_DATA = {
+    "issuer_name": "App2China",
+    "issuer_street": "Django street, 34",
+    "issuer_zipcode": "123-3444",
+    "issuer_city": "Djangoko",
+    "issuer_country": "Djangoland",
+    "issuer_tax_number": "1222233334444555",
+}
+
+
+TAXATION_POLICY='plans.taxation.EUTaxationPolicy'
+
 
 
 try:

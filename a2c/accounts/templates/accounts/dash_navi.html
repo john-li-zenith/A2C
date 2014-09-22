@@ -1,0 +1,6 @@
+{% block child %}
+<a href='{% url 'contact_update' %}'>Personal Info</a>
+<a href='{% url 'applist' %}'>Apps History</a>
+<a href=''>Billing</a>
+{% if user.contact.allow_to_upload %}<a href='{% url 'app-upload' %}'>Upload App</a>{% endif %}
+{% endblock %}
