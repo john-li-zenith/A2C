@@ -140,6 +140,7 @@ MEDIA_URL = '/media/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 STATIC_URL = '/static/'
 
+LOGIN_REDIRECT_URL='/accounts/info/'
 
 # Easy Thumbnails
 
@@ -152,11 +153,15 @@ SOUTH_MIGRATION_MODULES = {
 
 CURRENCY = 'USD'
 
+TAX_COUNTRY = 'USA'
+
 DEFAULT_FROM_EMAIL='example@example.com' # need to be changed before production
 
 INVOICE_COUNTER_RESET = 'yearly'
 
 INVOICE_NUMBER_FROMAT = "{{ invoice.number }}/{{ invoice.issued|date='m/FV/Y' }}"
+
+TAXATION_POLICY='accounts.USA.USATaxationPolicy'
 
 INVOICE_TEMPLATE = 'plans/invoices/PL_EN.html'
 
@@ -175,7 +180,7 @@ ISSUER_DATA = {
 }
 
 
-TAXATION_POLICY='plans.taxation.EUTaxationPolicy'
+
 
 
 

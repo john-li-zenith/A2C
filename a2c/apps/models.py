@@ -3,6 +3,7 @@ from mptt.models import MPTTModel
 from django.utils.encoding import python_2_unicode_compatible
 from django.contrib.auth.models import User
 from django.forms import ModelForm
+from django import forms
 from easy_thumbnails.fields import ThumbnailerImageField as thumbfield
 from django_countries.fields import CountryField
 
@@ -80,8 +81,20 @@ class App(models.Model):
         
     def __unicode__(self):
         return self.name
+        
+
+class AppLog(models.Model):
+    app=models.ForeignKey(App)
+    description=models.TextField()
+    created=models.DateTimeField()
+    
+    def __unicode__(self):
+        return self.description
+        
+    
     
 class AppForm(ModelForm):
     class Meta:
         model = App
-        exclude =['user','allow_to_upload']
+        widgets = {'user': forms.HiddenInput()}
+        exclude =['appkey','allow_to_upload']
