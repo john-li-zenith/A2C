@@ -45,7 +45,7 @@ INSTALLED_APPS = (
     'a2c',
     'django.contrib.admin',
     'django.contrib.auth',
-    #'django.contrib.sites',
+    'django.contrib.sites',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -66,8 +66,11 @@ INSTALLED_APPS = (
     'plans',
     'localflavor',
     #'getpaid',
+    #'debug_toolbar',
 
 )
+
+SITE_ID=1
 
 if DEBUG:
     INSTALLED_APPS+=('debug_toolbar',)
@@ -94,6 +97,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
 
@@ -107,7 +111,11 @@ ROOT_URLCONF = 'a2c.urls'
 
 WSGI_APPLICATION = 'a2c.wsgi.application'
 
-
+CACHES={
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+    }
+}
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
@@ -157,7 +165,7 @@ TAX_COUNTRY = 'USA'
 
 DEFAULT_FROM_EMAIL='example@example.com' # need to be changed before production
 
-INVOICE_COUNTER_RESET = 'yearly'
+#INVOICE_COUNTER_RESET = 'annually'
 
 INVOICE_NUMBER_FROMAT = "{{ invoice.number }}/{{ invoice.issued|date='m/FV/Y' }}"
 
@@ -180,7 +188,10 @@ ISSUER_DATA = {
 }
 
 
-
+PLAN_VALIDATORS = {
+    'MAX_APP_COUNT': 'apps.validators.max_apps_validator',
+    'MAX_APPUPDATE_COUNT': 'apps.validators.max_appupdates_validator',
+}
 
 
 

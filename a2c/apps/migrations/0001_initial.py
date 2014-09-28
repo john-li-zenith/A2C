@@ -21,34 +21,105 @@ class Migration(SchemaMigration):
         ))
         db.send_create_signal(u'apps', ['AppCategory'])
 
+        # Adding model 'AppKey'
+        db.create_table(u'apps_appkey', (
+            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('appkey', self.gf('django.db.models.fields.CharField')(max_length=200)),
+            ('is_used', self.gf('django.db.models.fields.BooleanField')()),
+        ))
+        db.send_create_signal(u'apps', ['AppKey'])
+
         # Adding model 'App'
         db.create_table(u'apps_app', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('name', self.gf('django.db.models.fields.CharField')(max_length=30)),
-            ('description', self.gf('django.db.models.fields.TextField')()),
+            ('name_zh', self.gf('django.db.models.fields.CharField')(max_length=30, null=True, blank=True)),
+            ('description_short', self.gf('django.db.models.fields.TextField')(null=True, blank=True)),
+            ('description_long', self.gf('django.db.models.fields.TextField')(null=True, blank=True)),
+            ('icon_512', self.gf('django.db.models.fields.files.ImageField')(max_length=100, null=True, blank=True)),
+            ('icon_72', self.gf('django.db.models.fields.files.ImageField')(max_length=100, null=True, blank=True)),
             ('category', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['apps.AppCategory'], null=True, blank=True)),
             ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
-            ('appfile', self.gf('django.db.models.fields.files.FileField')(max_length=100)),
+            ('appkey', self.gf('django.db.models.fields.CharField')(max_length=100, null=True, blank=True)),
+            ('appfile', self.gf('django.db.models.fields.files.FileField')(max_length=100, null=True, blank=True)),
+            ('screenshot_1', self.gf('django.db.models.fields.files.ImageField')(max_length=100, null=True, blank=True)),
+            ('screenshot_2', self.gf('django.db.models.fields.files.ImageField')(max_length=100, null=True, blank=True)),
+            ('screenshot_3', self.gf('django.db.models.fields.files.ImageField')(max_length=100, null=True, blank=True)),
+            ('screenshot_4', self.gf('django.db.models.fields.files.ImageField')(max_length=100, null=True, blank=True)),
+            ('screenshot_5', self.gf('django.db.models.fields.files.ImageField')(max_length=100, null=True, blank=True)),
+            ('screenshot_6', self.gf('django.db.models.fields.files.ImageField')(max_length=100, null=True, blank=True)),
+            ('screenshot_7', self.gf('django.db.models.fields.files.ImageField')(max_length=100, null=True, blank=True)),
+            ('screenshot_8', self.gf('django.db.models.fields.files.ImageField')(max_length=100, null=True, blank=True)),
+            ('screenshot_9', self.gf('django.db.models.fields.files.ImageField')(max_length=100, null=True, blank=True)),
+            ('screenshot_10', self.gf('django.db.models.fields.files.ImageField')(max_length=100, null=True, blank=True)),
+            ('uploaded', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, null=True, blank=True)),
+            ('allow_to_upload', self.gf('django.db.models.fields.BooleanField')(default=False)),
         ))
         db.send_create_signal(u'apps', ['App'])
+
+        # Adding model 'AppUpdate'
+        db.create_table(u'apps_appupdate', (
+            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('app', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['apps.App'])),
+            ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'], null=True, blank=True)),
+            ('appfile', self.gf('django.db.models.fields.files.FileField')(max_length=100, null=True, blank=True)),
+            ('description', self.gf('django.db.models.fields.TextField')(null=True, blank=True)),
+            ('uploaded', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, null=True, blank=True)),
+        ))
+        db.send_create_signal(u'apps', ['AppUpdate'])
+
+        # Adding model 'AppLog'
+        db.create_table(u'apps_applog', (
+            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('app', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['apps.App'])),
+            ('description', self.gf('django.db.models.fields.TextField')()),
+            ('created', self.gf('django.db.models.fields.DateTimeField')()),
+        ))
+        db.send_create_signal(u'apps', ['AppLog'])
 
 
     def backwards(self, orm):
         # Deleting model 'AppCategory'
         db.delete_table(u'apps_appcategory')
 
+        # Deleting model 'AppKey'
+        db.delete_table(u'apps_appkey')
+
         # Deleting model 'App'
         db.delete_table(u'apps_app')
+
+        # Deleting model 'AppUpdate'
+        db.delete_table(u'apps_appupdate')
+
+        # Deleting model 'AppLog'
+        db.delete_table(u'apps_applog')
 
 
     models = {
         u'apps.app': {
             'Meta': {'object_name': 'App'},
-            'appfile': ('django.db.models.fields.files.FileField', [], {'max_length': '100'}),
+            'allow_to_upload': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            'appfile': ('django.db.models.fields.files.FileField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
+            'appkey': ('django.db.models.fields.CharField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
             'category': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['apps.AppCategory']", 'null': 'True', 'blank': 'True'}),
-            'description': ('django.db.models.fields.TextField', [], {}),
+            'description_long': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
+            'description_short': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
+            'icon_512': ('django.db.models.fields.files.ImageField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
+            'icon_72': ('django.db.models.fields.files.ImageField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '30'}),
+            'name_zh': ('django.db.models.fields.CharField', [], {'max_length': '30', 'null': 'True', 'blank': 'True'}),
+            'screenshot_1': ('django.db.models.fields.files.ImageField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
+            'screenshot_10': ('django.db.models.fields.files.ImageField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
+            'screenshot_2': ('django.db.models.fields.files.ImageField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
+            'screenshot_3': ('django.db.models.fields.files.ImageField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
+            'screenshot_4': ('django.db.models.fields.files.ImageField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
+            'screenshot_5': ('django.db.models.fields.files.ImageField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
+            'screenshot_6': ('django.db.models.fields.files.ImageField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
+            'screenshot_7': ('django.db.models.fields.files.ImageField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
+            'screenshot_8': ('django.db.models.fields.files.ImageField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
+            'screenshot_9': ('django.db.models.fields.files.ImageField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
+            'uploaded': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'null': 'True', 'blank': 'True'}),
             'user': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['auth.User']"})
         },
         u'apps.appcategory': {
@@ -61,6 +132,28 @@ class Migration(SchemaMigration):
             u'rght': ('django.db.models.fields.PositiveIntegerField', [], {'db_index': 'True'}),
             'slug': ('django.db.models.fields.SlugField', [], {'max_length': '50'}),
             u'tree_id': ('django.db.models.fields.PositiveIntegerField', [], {'db_index': 'True'})
+        },
+        u'apps.appkey': {
+            'Meta': {'object_name': 'AppKey'},
+            'appkey': ('django.db.models.fields.CharField', [], {'max_length': '200'}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'is_used': ('django.db.models.fields.BooleanField', [], {})
+        },
+        u'apps.applog': {
+            'Meta': {'object_name': 'AppLog'},
+            'app': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['apps.App']"}),
+            'created': ('django.db.models.fields.DateTimeField', [], {}),
+            'description': ('django.db.models.fields.TextField', [], {}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'})
+        },
+        u'apps.appupdate': {
+            'Meta': {'object_name': 'AppUpdate'},
+            'app': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['apps.App']"}),
+            'appfile': ('django.db.models.fields.files.FileField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
+            'description': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'uploaded': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'null': 'True', 'blank': 'True'}),
+            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['auth.User']", 'null': 'True', 'blank': 'True'})
         },
         u'auth.group': {
             'Meta': {'object_name': 'Group'},

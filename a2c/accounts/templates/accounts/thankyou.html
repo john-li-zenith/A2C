@@ -1,0 +1,9 @@
+{% extends 'base.html'%}
+{% load i18n %}
+
+{% block content %}
+{% block child %}
+{% include 'accounts/dash_navi.html' %}
+{% endblock %}
+<p>Thank you for uploading your app files.</p> <a href="{% url 'dash' %}">Back to Dashboard</a>
+{% endblock %}

@@ -2,7 +2,7 @@ from django.db import models
 from mptt.models import MPTTModel
 from django.utils.encoding import python_2_unicode_compatible
 from django.contrib.auth.models import User
-from django.forms import ModelForm
+
 from django import forms
 from easy_thumbnails.fields import ThumbnailerImageField as thumbfield
 from django_countries.fields import CountryField
@@ -81,7 +81,13 @@ class App(models.Model):
         
     def __unicode__(self):
         return self.name
-        
+
+class AppUpdate(models.Model):
+    app=models.ForeignKey(App)
+    user=models.ForeignKey(User,blank=True,null=True)
+    appfile=models.FileField(upload_to='apps/upgrade/%Y/%m/%d',blank=True,null=True)
+    description=models.TextField(blank=True,null=True)
+    uploaded=models.DateTimeField(auto_now_add=True,blank=True,null=True)
 
 class AppLog(models.Model):
     app=models.ForeignKey(App)
@@ -89,12 +95,7 @@ class AppLog(models.Model):
     created=models.DateTimeField()
     
     def __unicode__(self):
-        return self.description
+        return self.created
         
     
     
-class AppForm(ModelForm):
-    class Meta:
-        model = App
-        widgets = {'user': forms.HiddenInput()}
-        exclude =['appkey','allow_to_upload']

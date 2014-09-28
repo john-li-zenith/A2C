@@ -1,5 +1,5 @@
 from django.contrib import admin
-from apps.models import AppCategory, App,AppKey,AppLog
+from apps.models import AppCategory, App,AppKey,AppLog, AppUpdate
 from feincms.admin import tree_editor
 
 # Register your models here.
@@ -8,7 +8,7 @@ class AppCategoryAdmin(tree_editor.TreeEditor):
     pass
         
 class AppAdmin(admin.ModelAdmin):
-    list_display = ('name',)
+    list_display = ('name','user')
     list_filter = ['user',]
     search_fields = ['name',]
 
@@ -20,8 +20,12 @@ class AppLogAdmin(admin.ModelAdmin):
     list_display = ('description','created','app')
     ordering=('-created',)
     list_filter=('app',)
+    
+class AppUpdateAdmin(admin.ModelAdmin):
+    pass
 
 admin.site.register(AppLog,AppLogAdmin)
 admin.site.register(App,AppAdmin)
 admin.site.register(AppCategory, AppCategoryAdmin)
 admin.site.register(AppKey,AppKeyAdmin)
+admin.site.register(AppUpdate,AppUpdateAdmin)
