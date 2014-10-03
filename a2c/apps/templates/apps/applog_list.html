@@ -4,11 +4,24 @@
 {% block child%}
 {% include 'accounts/dash_navi.html' %}
 {% endblock %}
-<h1>{{ app }}</h1>
+<h1>App Name : {{ app }}</h1>
 <ul>
-{% for applog in object_list %}
-    <li>{{ applog.description }} - uploaded on {{ applog.created|date }}</li>
+ {% for type in types %}
+  {% for key, values in type.items %}
+     <h2>{{ values }}</h2><br/>
+    {% for applog in object_list %}
     
+     {% if applog.type.name == values %}
+    <li><p>{{ applog.created|date }}</p> 
+       {{ applog.description }} 
+       {% if applog.image %}
+       <p>Screenshot:
+       <a href='{{ applog.image.url }}'>click here</a></p>
+       {% endif %}
+    </li><br/>
+     {% endif %}
+     {% endfor %}
+{% endfor %}
 {% empty %}
     <li>There is no log for this App yet.</li>
 {% endfor %}

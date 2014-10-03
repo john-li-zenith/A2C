@@ -10,6 +10,7 @@ from apps.models import App, AppLog,AppUpdate
 from django.http import HttpResponseRedirect
 from django.http import Http404
 from django.views.generic.edit import CreateView
+from django.db.models import Count
 
 def get_or_return_none(classobject,**kwags):
     try:
@@ -27,7 +28,7 @@ class AppListView(ListView):
     
     def get_context_data(self, **kwargs):
         context = super(AppListView, self).get_context_data(**kwargs)
-        context['now'] = timezone.now()
+        #context['now'] = timezone.now()
         return context
         
 class AppLogListView(ListView):
@@ -41,6 +42,7 @@ class AppLogListView(ListView):
         
     def get_context_data(self, **kwargs):
         context = super(AppLogListView, self).get_context_data(**kwargs)
+        context['types']=AppLog.objects.values('type__name').annotate().order_by()
         context['app'] = self.app.name
         return context
     
@@ -62,6 +64,7 @@ class AppLogListView(ListView):
 class AppUploadCreateView(CreateView):
     model = App
     form_class = AppForm
+    template_name = 'apps/app_upload.html'
 
     def get_initial(self):
         initial = super(AppUploadCreateView,self).get_initial()
@@ -69,7 +72,7 @@ class AppUploadCreateView(CreateView):
         return initial
 
     def get_success_url(self):
-        return reverse('thankyou')
+        return HttpResponseRedirect(reverse('thankyou'))
 
     def get_queryset(self):
         return super(AppUploadCreateView,self).get_queryset().filter(user=self.request.user) 
@@ -78,6 +81,7 @@ class AppUploadCreateView(CreateView):
 class AppUpdateCreateView(CreateView):
     model = AppUpdate
     form_class = AppUpdateForm
+    template_name = 'apps/app_update.html'
 
     def get_initial(self):
         initial = super(AppUpdateCreateView,self).get_initial()

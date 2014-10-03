@@ -88,14 +88,23 @@ class AppUpdate(models.Model):
     appfile=models.FileField(upload_to='apps/upgrade/%Y/%m/%d',blank=True,null=True)
     description=models.TextField(blank=True,null=True)
     uploaded=models.DateTimeField(auto_now_add=True,blank=True,null=True)
+    
+class AppLogType(models.Model):
+    name=models.CharField(max_length=200)
+    description=models.TextField(blank=True)
+    
+    def __unicode__(self):
+        return self.name
 
 class AppLog(models.Model):
     app=models.ForeignKey(App)
+    type=models.ForeignKey(AppLogType,blank=True,null=True)
     description=models.TextField()
+    image=models.ImageField(upload_to='apps/logs/%Y/%m/%d',blank=True,null=True)
     created=models.DateTimeField()
     
     def __unicode__(self):
-        return self.created
+        return unicode(self.created)
         
     
     

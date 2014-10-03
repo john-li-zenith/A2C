@@ -3,7 +3,7 @@
 {% block child %}
 <a href='{% url 'applist' %}'><button>Manage uploaded Apps</button></a>
 <a href='{% url 'contact_update' %}'><button >Info</button></a>
-{% if True %}
-<a href='{% url 'contact_update' %}'><button >Upload New Apps</button></a>
-{% endif %}
+
+<a href='{% url 'app-upload' %}'><button >Upload New Apps</button></a>
+
 {% endblock %}

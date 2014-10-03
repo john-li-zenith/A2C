@@ -85,7 +85,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.request',
     'django.core.context_processors.static',
     'plans.context_processors.account_status',
-
+    'accounts.context_processors.contact_status',
     'feincms.context_processors.add_page_if_missing',
 )
 
@@ -176,7 +176,7 @@ INVOICE_TEMPLATE = 'plans/invoices/PL_EN.html'
 PLAN_EXPIRATION_REMIND = [1, 3 , 7]
 
 from decimal import Decimal
-TAX = Decimal(8.75) #for 8.75% VAT
+TAX = Decimal(0.00) #for 8.75% VAT
 
 ISSUER_DATA = {
     "issuer_name": "App2China",
@@ -193,6 +193,7 @@ PLAN_VALIDATORS = {
     'MAX_APPUPDATE_COUNT': 'apps.validators.max_appupdates_validator',
 }
 
+PLAN_CHANGE_POLICY = 'accounts.plan_change.StandardPlanChangePolicy'
 
 
 try:

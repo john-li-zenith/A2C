@@ -9,7 +9,7 @@ class AppForm(ModelForm):
     class Meta:
         model = App
         widgets = {'user': forms.HiddenInput()}
-        exclude =['appkey','allow_to_upload']
+        exclude =['appkey','allow_to_upload','uploaded',]
     
     def clean(self):
         cleaned_data = super(AppForm, self).clean()
@@ -22,8 +22,8 @@ class AppUpdateForm(ModelForm):
     
     class Meta:
         model=AppUpdate
-        #widgets={'app':forms.HiddenInput()}
-        exclude={'uploaded','user'}
+        widgets={'app':forms.HiddenInput()}
+        #exclude={'uploaded','user'}
         
     def clean(self):
         cleaned_data = super(AppUpdateForm, self).clean()
