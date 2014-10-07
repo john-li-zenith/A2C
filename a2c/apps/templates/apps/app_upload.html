@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+{% block child%}
+{% include 'accounts/dash_navi.html' %}
+{% endblock %}
+
+{% if has_contact %}
+<form enctype="multipart/form-data" action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Submit" />
+</form>
+{% else %}
+<br/>
+<p>You need to update your <a href='{% url 'contact_update' %}'>contact info </a>first.</p>
+{% endif %}
+
+
+
+{% endblock %}
