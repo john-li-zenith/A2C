@@ -3,7 +3,7 @@ from django.forms import ModelForm
 from django.contrib.auth.models import User
 from django import forms
 from django.forms import ModelForm
-from creditcard.fields import CreditCardField, ExpiryDateField, VerificationValueField
+from .fields import CreditCardField, ExpiryDateField, VerificationValueField
 from django_countries.fields import CountryField
 from django.utils.translation import ugettext_lazy as _
 from localflavor.us.models import USStateField
