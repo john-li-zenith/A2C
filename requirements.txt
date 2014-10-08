@@ -25,3 +25,4 @@ vatnumber==1.2
 wsgiref==0.1.2
 #-e git+https://github.com/cypreess/django-getpaid.git#egg=django-getpaid
 django-modeltranslation>=0.5b1
+django-storages

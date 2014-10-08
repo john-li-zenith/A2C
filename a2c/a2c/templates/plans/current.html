@@ -10,10 +10,8 @@
         <dt>{% trans "Account" %}:</dt>
         <dd>{{ user }}</dd>
         <dt>{% trans "State" %}:</dt>
-        <dd>{% if userplan.active  %} {% trans "active" %} {% endif %}
-            {% if userplan.plan  %}{% trans "expired" %} {% endif %}
-             {% if not userplan.plan  %}{% trans "You dont have a plan yet" %} {% endif %}   
-            </dd>
+        <dd>{% if userplan.active %} {% trans "active" %} {% else %}
+            {% trans "expired" %} {% endif %}</dd>
         <dt>{% trans "Expire" %}:</dt>
         <dd> {{ userplan.expire }}</dd>
         <dt>{% trans "Plan" %}:</dt>

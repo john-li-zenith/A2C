@@ -11,6 +11,8 @@ from django.http import HttpResponseRedirect
 from django.http import Http404
 from django.views.generic.edit import CreateView
 from django.db.models import Count
+from django.core.urlresolvers import reverse
+
 
 def get_or_return_none(classobject,**kwags):
     try:

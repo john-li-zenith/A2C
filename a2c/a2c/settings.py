@@ -51,7 +51,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'creditcard',
+    #'creditcard',
     'accounts',
     'apps',
     'feincms',
@@ -67,6 +67,7 @@ INSTALLED_APPS = (
     'localflavor',
     #'getpaid',
     #'debug_toolbar',
+    'storages',
 
 )
 
@@ -196,6 +197,23 @@ PLAN_VALIDATORS = {
 PLAN_CHANGE_POLICY = 'accounts.plan_change.StandardPlanChangePolicy'
 
 
+# Amazon S3
+
+if not DEBUG:
+    
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+    
+    AWS_ACCESS_KEY_ID=os.environ['AWS_ACCESS_KEY_ID']
+    
+    AWS_SECRET_ACCESS_KEY=os.environ['AWS_SECRET_ACCESS_KEY']
+    
+    AWS_STORAGE_BUCKET_NAME='app2china'
+    
+    AWS_HEADERS = {
+    'Expires': 'Thu, 15 Apr 2010 20:00:00 GMT',
+    'Cache-Control': 'max-age=86400',
+}
+    
 try:
     from local_settings import *
 except ImportError:
