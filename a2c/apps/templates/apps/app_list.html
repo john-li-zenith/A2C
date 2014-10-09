@@ -11,7 +11,8 @@
     <p>Category:</p> <p>{{ app.category.name }}</p>
     <p> {{ app.description_long }}</p>
     
-    <p><a href=''>Download Tracking (Umeng)</a></p>
+    <a href='{% url 'app-track' app.id %}'><button>Download Tracking (Umeng)</button></a>
+    
     <p><a href = '{% url 'applog' app.id %}'>App logs (user review + copyright protection)</a></p>
     
     <br/>

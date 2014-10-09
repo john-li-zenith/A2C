@@ -8,5 +8,5 @@ urlpatterns = patterns(
     url(r'^log/(\d+)/$', login_required(AppLogListView.as_view()), name='applog'),
     url(r'^upload/$',login_required(AppUploadCreateView.as_view()),name='app-upload'),
     url(r'^update/$',login_required(AppUpdateCreateView.as_view()),name='app-update'),
-    
+    url(r'^track/(\d+)/$','apps.views.umeng',name='app-track'),
     )

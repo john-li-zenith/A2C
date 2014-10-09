@@ -12,6 +12,10 @@ from django.http import Http404
 from django.views.generic.edit import CreateView
 from django.db.models import Count
 from django.core.urlresolvers import reverse
+import requests
+import datetime
+from django.shortcuts import render
+import json
 
 
 def get_or_return_none(classobject,**kwags):
@@ -112,3 +116,33 @@ class AppUpdateCreateView(CreateView):
 #             return HttpResponseRedirect('/accounts/thankyou/')
 #     #app_update=AppUpdate.objects.filter(app=form.app)
 #     return render(request, 'apps/app_update.html', {'form': form,})
+
+def return_zero_if_empty(li):
+    if not li:
+        return '0'
+    else:
+        return li
+
+@login_required
+def umeng(request,appid):
+    auth=("app2china@126.com:app2china126").encode('base64')
+    end_date=datetime.date.today()
+    start_date=end_date+datetime.timedelta(weeks=-1)
+    app=App.objects.get(id=appid)
+    appkey=app.appkey
+    if not appkey:
+        return render(request, 'apps/app_track.html', {"result": "You app doesnt have an appkey!"})
+    newuser_url = "http://api.umeng.com/new_users?appkey="+appkey+"&start_date="+str(start_date)+"&end_date="+str(end_date)+"&period_type=weekly"
+    activeuser_url= "http://api.umeng.com/active_users?appkey="+appkey+"&start_date="+str(start_date)+"&end_date="+str(end_date)+"&period_type=weekly"
+    launches_url="http://api.umeng.com/launches?appkey="+appkey+"&start_date="+str(start_date)+"&end_date="+str(end_date)+"&period_type=weekly"
+    r_newuser=requests.get(newuser_url,headers={'Authorization':'Basic '+str(auth)})
+    r_activeuser=requests.get(activeuser_url,headers={'Authorization':'Basic '+str(auth)})
+    r_launches=requests.get(launches_url,headers={'Authorization':'Basic '+str(auth)})
+    r_newuser_data=json.loads(r_newuser.text)
+    r_activeuser_data=json.loads(r_activeuser.text)
+    r_launches_data=json.loads(r_launches.text)
+    newuser_number=return_zero_if_empty(r_newuser_data['data']['all'])
+    activeuser_number=return_zero_if_empty(r_activeuser_data['data']['all'])
+    lauches_number=return_zero_if_empty(r_launches_data['data']['all'])
+    result="<table border='2' padding='2'><tr><td>No. of New Users</td><td>No. of Active Users</td><td>No. of Launches</td></tr><tr><td>"+newuser_number+"</td><td>"+activeuser_number+"</td><td>"+lauches_number+"</td></tr></table>"
+    return render(request, 'apps/app_track.html', {"result": result})

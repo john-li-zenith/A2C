@@ -1,5 +1,6 @@
 Django==1.6.6
 FeinCMS==1.10.0
+MySQL-python==1.2.5
 Pillow==2.5.3
 South==1.0
 amqp==1.4.6
@@ -9,21 +10,22 @@ billiard==3.3.0.18
 celery==3.1.15
 django-countries==2.1.2
 django-debug-toolbar==1.2.1
+-e git+https://github.com/cypreess/django-getpaid.git@312a2f9b2d750521a2315becedc6de322696271a#egg=django_getpaid-master
+django-localflavor==1.0
 django-mptt==0.6.1
 django-ordered-model==0.4.0
 django-paypal==0.1.3
-#-e git://github.com/cypreess/django-plans.git@23ab2d40d728659f976875457b9073b6bec43966#egg=django_plans-master
+-e git://github.com/cypreess/django-plans.git@23ab2d40d728659f976875457b9073b6bec43966#egg=django_plans-master
 django-registration==1.0
+django-storages==1.1.8
 easy-thumbnails==2.1
 feedparser==5.1.3
 kombu==3.0.23
 python-stdnum==0.9
 pytz==2014.7
+requests==2.4.3
+six==1.8.0
 sqlparse==0.1.11
 suds-jurko==0.6
 vatnumber==1.2
 wsgiref==0.1.2
-#-e git+https://github.com/cypreess/django-getpaid.git#egg=django-getpaid
-django-modeltranslation>=0.5b1
-django-storages==1.1.8
-requests==2.4.3
