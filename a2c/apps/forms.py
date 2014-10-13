@@ -22,8 +22,8 @@ class AppUpdateForm(ModelForm):
     
     class Meta:
         model=AppUpdate
-        widgets={'app':forms.HiddenInput()}
-        #exclude={'uploaded','user'}
+        widgets={'user': forms.HiddenInput()}
+        
         
     def clean(self):
         cleaned_data = super(AppUpdateForm, self).clean()
