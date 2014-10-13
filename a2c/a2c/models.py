@@ -24,6 +24,7 @@ Page.register_templates({
     'path': 'base.html',
     'regions': (
         ('main', 'Main region'),
+        ('carousel','Carousel'),
         ('sidebar', 'Sidebar', 'inherited'),
     ),
 })
