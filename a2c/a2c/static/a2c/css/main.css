@@ -32,11 +32,11 @@ body {
             color: #304b65;
             font-weight: bold;
             font-size: 18px;
-    -webkit-transition: all 200ms ease-in;
-    -moz-transition: all 200ms ease-in;
-    -ms-transition: all 200ms ease-in;
-    -o-transition: all 200ms ease-in;
-    transition: all 200ms ease-in;
+            -webkit-transition: all 200ms ease-in;
+            -moz-transition: all 200ms ease-in;
+            -ms-transition: all 200ms ease-in;
+            -o-transition: all 200ms ease-in;
+            transition: all 200ms ease-in;
         }
 
         .navbar img {
@@ -48,20 +48,89 @@ body {
 
         }
 
+        ul
+        {
+            list-style-type: none;
+        }
 
+        .navbar-right{
+            margin-top:-105px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .dropdown-menu .divider{
+            height:0px;
+            margin:0px 0px;
+        }
+        .dropdown-menu li {
+            display: block;
+            margin: 0px 30px 10px 0;
+        }
 
+        .dropdown-menu li a{
+            padding: 2.5px 15px;
+            font-weight: bold;
+            font-size: 18px;
+        }
 
+        .dropdown-menu li a:hover{
+            background: transparent;
+        }
+
+        .dropdown .dropdown-toggle{
+            text-decoration: none;
+            color:#ffffff;
+            -webkit-transition: all 200ms ease-in;
+            -moz-transition: all 200ms ease-in;
+            -ms-transition: all 200ms ease-in;
+            -o-transition: all 200ms ease-in;
+            transition: all 200ms ease-in;
+        }
+        .navbar-right:hover .dropdown-toggle{
+            text-decoration: none;
+            color: #ffcc00;
+        }
+        .open .dropdown-toggle{
+            text-decoration: none;
+            color: #ffcc00;
+        }
+
+        #carousel{
+            margin-left: 110px;
+            width:1060px;
+            height:500px;
+            font-size: 35px;
+            color: rgba(255,255,255,0.09)
+        }
+
+        .pre{
+            left: -70px; 
+            position: absolute; 
+            cursor: pointer; 
+            top: 50%; 
+            margin-top: -82px; 
+        }
+        .nex{
+            right: -70px;
+            position: absolute; 
+            cursor: pointer; 
+            top: 50%; 
+            margin-top: -82px;  
+        }
     
         #navigation a:hover,
         #navigation a.mark {
             background: #ffffff;
             text-decoration:none;
         }
+
     
         #wrapper {
             width: 830px;
         }
-    
+
+
+
         #main {
             float: right;
             width: 500px;
@@ -69,9 +138,7 @@ body {
     
         #sidebar {
             float: left;
-            width: 300px;
             background: #304b65;
-            min-height: 300px;
             padding: 0 0 0 10px;
         }
     

@@ -68,7 +68,9 @@ INSTALLED_APPS = (
     #'getpaid',
     #'debug_toolbar',
     'storages',
-
+    #'paypal.standard.ipn',
+    #'paypal.standard.pdt',
+    'paypal_express_checkout',
 )
 
 SITE_ID=1
@@ -214,8 +216,19 @@ if not DEBUG:
     'Cache-Control': 'max-age=86400',
 }
     
-    
-    
+
+# Django paypal express checkout
+
+HOSTNAME = 'http://http://a2c-c9-johnlizenith.c9.io'  # without trailing slash
+
+SALE_DESCRIPTION = 'Your payment to App2China'
+
+
+PAYPAL_USER = 'john.li-facilitator_api1.zen-tec.us'
+PAYPAL_PWD = 'HS97YCWJTFLZX4N8'
+PAYPAL_SIGNATURE = 'AFcWxV21C7fd0v3bYYYRCpSSRl31AvwB3D9piSVkDQrMvBpz09iPKC2-'
+
+
 try:
     from local_settings import *
 except ImportError:

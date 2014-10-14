@@ -89,6 +89,9 @@ class AppUpdate(models.Model):
     description=models.TextField(blank=True,null=True)
     uploaded=models.DateTimeField(auto_now_add=True,blank=True,null=True)
     
+    def __unicode__(self):
+        return 'Update for ' + self.app.name
+    
 class AppLogType(models.Model):
     name=models.CharField(max_length=200)
     description=models.TextField(blank=True)
