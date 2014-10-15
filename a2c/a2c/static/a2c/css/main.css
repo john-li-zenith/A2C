@@ -52,7 +52,28 @@ body {
         {
             list-style-type: none;
         }
+        .navbar-right li,.navbar-right li a{
+            display: inline;
+            font-weight: bold;
+            font-size: 18px;
+            color:#ffffff;
+            -webkit-transition: all 200ms ease-in;
+            -moz-transition: all 200ms ease-in;
+            -ms-transition: all 200ms ease-in;
+            -o-transition: all 200ms ease-in;
+            transition: all 200ms ease-in;
+        }
+        .navbar-right li{
+            padding-left: 22px;
+        }
 
+        .navbar-right li a:hover{
+            display: inline;
+            font-weight: bold;
+            font-size: 18px;
+            text-decoration: none;
+            color: #ffcc00;
+        }
         .navbar-right{
             margin-top:-105px;
             font-weight: bold;
@@ -70,7 +91,8 @@ body {
         .dropdown-menu li a{
             padding: 2.5px 15px;
             font-weight: bold;
-            font-size: 18px;
+            font-size: 16px;
+            color: #304b65;
         }
 
         .dropdown-menu li a:hover{
@@ -86,7 +108,7 @@ body {
             -o-transition: all 200ms ease-in;
             transition: all 200ms ease-in;
         }
-        .navbar-right:hover .dropdown-toggle{
+        .dropdown-toggle:hover{
             text-decoration: none;
             color: #ffcc00;
         }
@@ -123,17 +145,38 @@ body {
             background: #ffffff;
             text-decoration:none;
         }
+        form{
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 20px 40px;
 
-    
-        #wrapper {
-            width: 830px;
+        }
+        form label{
+            font-size: 20px;
+            display: block;
+            color: #304b65;
+        }
+        form span{
+            font-weight: 600;
+            font-size: 16px;
+            display: block;
+            color: rgb(100,100,100);
+        }
+        form input{
+            padding-left: 10px;
+            font-size: 16px;
+            display: block;
+            color: rgb(55,55,55);
+        }
+        form input[type="file"] {
+            padding: 10px 0px;
         }
 
 
 
         #main {
             float: right;
-            width: 500px;
+            width: 830px;
         }
     
         #sidebar {

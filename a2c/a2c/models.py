@@ -21,7 +21,7 @@ from feincms.content.application.models import app_reverse
 Page.register_templates({
     'key': 'base',
     'title': 'Base Template',
-    'path': 'base.html',
+    'path': 'index.html',
     'regions': (
         ('main', 'Main region'),
         ('carousel','Carousel'),
