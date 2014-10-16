@@ -1,15 +1,83 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    {% block extra_js %}
-    {% endblock %}
-</head>
-<body>
-    <h1>App2China</h1>
-    {% include "plans/expiration_messages.html" %}
+        {% load applicationcontent_tags feincms_tags feincms_page_tags %}
+        {% load mptt_tags %}
+        {% load staticfiles %}
+        
+        <html>
+        <head>
+            <title>App2China {{ feincms_page.title }}</title>
+            <link rel="stylesheet" href="{{ STATIC_URL }}a2c/css/bootstrap.css">
+            <link rel="stylesheet" href="{{ STATIC_URL }}a2c/css/bootstrap-theme.css">
+            <link rel="stylesheet" href="{{ STATIC_URL }}a2c/css/main.css">
+            <link rel="stylesheet" href="{{ STATIC_URL }}a2c/css/font-awesome.min.css">
+    
+            <script src="{{ STATIC_URL }}a2c/js/jquery.js"></script>
+            <script src="{{ STATIC_URL }}a2c/js/bootstrap.js"></script>
+            
+            <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}a2c/css/slick.css">
+            {% block extra_js %}
+            {% endblock %}
+    
+        <!-- Latest compiled and minified JavaScript -->
+        </head>
+        <body>
+            <div class="navbar">
+            <a href="/"><img src='{{ STATIC_URL }}a2c/img/logo.png'></a>
+            <div id="navigation" class="clearfix">
 
-    {% block body %}
-    {% endblock %}
-</body>
-</html>
+            </div>
+             <ul class=" navbar-right">
+                    {% if user.is_authenticated %}
+                    <li> Hi, {{ user.username }}</li>
+                   
+                        <li class="dropdown">
+                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">PROFILE <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/plan/account/">Your account</a></li>
+                                <li><a href='{% url 'dash' %}'>Dashboard</a></li>
+                                <li><a href='/plan/pricing/'>Plan</a></li>
+                                <li><a href="/plan/upgrade/">Upgrade plan</a></li>
+                                <li class="divider"></li>
+                                <li><a href="/plan/order/">Orders</a></li>
+                                <li><a href="/plan/billing/">Billing data</a></li>
+                                <li class="divider"></li>
+                                </ul>
+                                 <li><a href="/accounts/logout/">Logout</a></li>
+                      {% else %}
+                <li><a href='{% url 'login' %}'>Login</a></li>
+                <li><a href='{% url 'registration_register' %}'>Register</a></li>
+                {% endif %}
+            </ul>
+                      
+            
+            </div>
+            <div id="wrapper">
+                
+                    
+                
+                <div id="main">
+                  {% block content %}
+                   
+                  
+                  {% endblock %}
+                </div>
+                <div id="plan" > 
+                {% include "plans/expiration_messages.html" %}
+                {% block body %}
+                {% endblock %}
+                </div>
+        
+                <div id="sidebar">
+                   {% block sidebar %}{% endblock %}
+                </div>
+             
+                
+    
+            
+            
+           
+
+           
+               
+            </body>
+            
+        </html>

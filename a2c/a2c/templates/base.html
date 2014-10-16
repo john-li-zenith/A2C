@@ -14,38 +14,18 @@
             <script src="{{ STATIC_URL }}a2c/js/bootstrap.js"></script>
             
             <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}a2c/css/slick.css">
+            {% block extra_js %}
+            {% endblock %}
     
         <!-- Latest compiled and minified JavaScript -->
         </head>
         <body>
             <div class="navbar">
-                <img src='{{ STATIC_URL }}a2c/img/logo.png'>
-                <div id="navigation" class="clearfix">
-                {% feincms_nav feincms_page level=1 depth=2 as navitems %}
-                   {% with navitems|siblings_along_path_to:feincms_page as navtree %}
-                         {% recursetree navtree %}
-                         {% if children %}
-                         <ul class="nav navbar-nav">
-                           <li class="dropdown">
-                          <a class="dropdown-toggle" data-toggle="dropdown" href="{{ node.get_absolute_url }}">{{ node.title }}<b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                             {{ children }}
-                             </ul>
-                             </li>
-                             </ul>
-                             {% else %}
-                             <a {% if node|is_equal_or_parent_of:feincms_page %}class="mark"{% endif %} href="{{ node.get_absolute_url }}">{{ node.title }}</a>
-                              {% endif %}
-                         {% endrecursetree %}
-                    {% endwith %}
-                 </div>
-               
-                  
-                
-                
-                
-                
-                    <ul class=" navbar-right">
+            <a href="/"><img src='{{ STATIC_URL }}a2c/img/logo.png'></a>
+            <div id="navigation" class="clearfix">
+
+            </div>
+             <ul class=" navbar-right">
                     {% if user.is_authenticated %}
                     <li> Hi, {{ user.username }}</li>
                    
@@ -66,41 +46,37 @@
                 <li><a href='{% url 'login' %}'>Login</a></li>
                 <li><a href='{% url 'registration_register' %}'>Register</a></li>
                 {% endif %}
-                            
-                                
-                                
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
+            </ul>
+                      
+            
             </div>
             <div id="wrapper">
-                <div id="carousel">
-                    {% block carousel %}{% feincms_render_region feincms_page "carousel" request %}{% endblock %}
-                </div>
+                
+                    
                 
                 <div id="main">
-                  {% block content %}{% feincms_render_region feincms_page "main" request %}{% endblock %}
+                  {% block content %}
+                   
+                  
+                  {% endblock %}
+                </div>
+                <div id="plan" > 
+                {% include "plans/expiration_messages.html" %}
+                {% block body %}
+                {% endblock %}
                 </div>
         
                 <div id="sidebar">
-                   {% block sidebar %}{% feincms_render_region feincms_page "sidebar" request %}{% endblock %}
+                   {% block sidebar %}{% endblock %}
                 </div>
              
-                 {% feincms_frontend_editing feincms_page request %}
+                
     
-            <span id="something">{% get_fragment request "something" %}</span>
             
-            <script type="text/javascript" src="{{ STATIC_URL }}a2c/js/slick.min.js"></script>
+            
+           
 
-           <script type="text/javascript" >
-                $(document).ready(function(){
-                    $('#carousel').slick({
-                        prevArrow:"<i class='fa fa-angle-left fa-5x pre'></i>",
-                        nextArrow:"<i class='fa fa-angle-right fa-5x nex'></i>",
-                    });
-                });
-           </script>
+           
                
             </body>
             

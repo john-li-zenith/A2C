@@ -120,9 +120,11 @@ body {
         #carousel{
             margin-left: 110px;
             width:1060px;
-            height:500px;
             font-size: 35px;
             color: rgba(255,255,255,0.09)
+        }
+        #carousel div{
+            height:500px;
         }
 
         .pre{

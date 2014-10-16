@@ -19,7 +19,7 @@
         </head>
         <body>
             <div class="navbar">
-                <img src='{{ STATIC_URL }}a2c/img/logo.png'>
+                <a href="/"><img src='{{ STATIC_URL }}a2c/img/logo.png'></a>
                 <div id="navigation" class="clearfix">
                 {% feincms_nav feincms_page level=1 depth=2 as navitems %}
                    {% with navitems|siblings_along_path_to:feincms_page as navtree %}
@@ -75,13 +75,13 @@
                 </div>
             </div>
             <div id="wrapper">
-                
+                     <div id="carousel">
                     {% block carousel %}
-                    <div id="carousel">
+                   
                     {% feincms_render_region feincms_page "carousel" request %}
-                    </div>
+                    
                     {% endblock %}
-                
+                  </div>
                 
                 <div id="main">
                   {% block content %}
@@ -102,10 +102,16 @@
 
            <script type="text/javascript" >
                 $(document).ready(function(){
-                    $('#carousel').slick({
+                    if ( $('#carousel').children().length > 0 ){
+                        $('#carousel').slick({
                         prevArrow:"<i class='fa fa-angle-left fa-5x pre'></i>",
                         nextArrow:"<i class='fa fa-angle-right fa-5x nex'></i>",
                     });
+                    }
+                    else{
+                        $('#carousel').hide();
+                    }   
+                    
                 });
            </script>
                
