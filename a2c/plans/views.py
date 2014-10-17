@@ -21,7 +21,9 @@ from plans.forms import CreateOrderForm, BillingInfoForm, FakePaymentsForm
 from plans.models import Quota, Invoice
 from plans.signals import order_started
 from plans.validators import plan_validation
+from django.core.mail import send_mail
 
+from paypal.standard.forms import PayPalPaymentsForm
 
 class AccountActivationView(LoginRequired, TemplateView):
     template_name = 'plans/account_activation.html'
@@ -360,6 +362,7 @@ class OrderPaymentReturnView(LoginRequired, DetailView):
         if self.status == 'success':
             messages.success(self.request,
                              _('Thank you for placing a payment. It will be processed as soon as possible.'))
+            
         elif self.status == 'failure':
             messages.error(self.request, _('Payment was not completed correctly. Please repeat payment process.'))
 

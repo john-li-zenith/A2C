@@ -10,13 +10,23 @@
                 {% if plan.url %}<a href="{{ plan.url }}" class="info_link plan">{% endif %}
                 <span class="plan_name">{{  plan.name }}</span>
                 <span class="plan_description">{{ plan.description }}</span>
-                {% if plan == userplan.plan %}
-                    <span class="current current_plan">{% trans "your current plan" %}</span>
-                {% endif %}
+                
+               
                 {% if plan.url %}</a>{% endif %}
             </th>
+             {% if plan == userplan.plan %}
+    <tr id="current">
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th>                        
+                        <span class="current current_plan">your current plan</span>
+                        </th>
+                        </tr>
+      {% endif %}
         {% endfor %}
     </tr>
+   
 
     </thead>
     <tbody>
@@ -104,7 +114,3 @@
     </tfoot>
 </table>
 
-<p style="text-align: right;">
-    {% trans "Net prices" %}
-
-</p>

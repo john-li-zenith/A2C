@@ -6,6 +6,15 @@ body {
             width:1280px;
             background-color: #304b65;
         }
+
+        a:hover{
+            text-decoration: none;
+        }
+        ul
+        {
+            padding: 0px;
+            list-style-type: none;
+        }
     
         h1 {
             background: #f2f2f2;
@@ -67,13 +76,14 @@ body {
             padding-left: 22px;
         }
 
-        .navbar-right li a:hover{
+        .navbar-right >li> a:hover{
             display: inline;
             font-weight: bold;
             font-size: 18px;
             text-decoration: none;
             color: #ffcc00;
         }
+
         .navbar-right{
             margin-top:-105px;
             font-weight: bold;
@@ -87,7 +97,9 @@ body {
             display: block;
             margin: 0px 30px 10px 0;
         }
-
+        .dropdown-menu li:hover{
+            color: rgb(96,150,192);
+        }
         .dropdown-menu li a{
             padding: 2.5px 15px;
             font-weight: bold;
@@ -97,6 +109,8 @@ body {
 
         .dropdown-menu li a:hover{
             background: transparent;
+            color: rgb(96,150,192);
+
         }
 
         .dropdown .dropdown-toggle{
@@ -147,6 +161,62 @@ body {
             background: #ffffff;
             text-decoration:none;
         }
+
+
+        #plan{
+            background: #ffffff;
+            border-radius: 10px;
+            border-collapse: separate;
+        }
+        .row{
+            display:inline;
+        }
+        h2{
+            text-align: center;
+        }
+        #plan td{
+            padding: 7px 7px;
+            text-align: center;
+
+        }
+        #plan th{
+            padding: 10px 10px;
+            text-align: center;
+
+        }
+        #plan thead{
+            color: #ffffff;
+            font-size: 18px;
+            background: rgb(96,150,192);
+        }
+        #plan .current_plan{
+            font-size: 14px;
+            color: #ffffff;
+        }
+        #current th{
+            padding: 0px 0px 5px 0px;
+        }
+        #plan tbody th span{
+            display: block;
+        }
+        #plan .quota_description{
+            font-size: 14px;
+            font-weight: normal; 
+        }
+        #plan tfoot .periods_footer{
+            text-align: center;
+            font-size: 18px;
+        }
+        #plan tfoot .planpricing_footer ul li span{
+            display: block;
+        }
+        #plan tfoot .planpricing_footer ul li a {
+            display: block;
+            height:20px;
+        }
+        #plan th{
+            width: 25%;
+        }
         form{
             background: #ffffff;
             border-radius: 10px;
@@ -169,18 +239,42 @@ body {
             font-size: 16px;
             display: block;
             color: rgb(55,55,55);
+            width:378px;
+        }
+        form select{
+            padding-left: 10px;
+            font-size: 16px;
+            display: block;
+            color: rgb(55,55,55);
+            height:28px;
         }
         form input[type="file"] {
             padding: 10px 0px;
         }
-
-
-
-        #main {
-            float: right;
-            width: 830px;
+        option{
+            color:rgb(0,0,0);
         }
-    
+        #main {
+            width: 100%;
+            color:#ffffff;
+        }
+        .blog-entry{
+            background:#ffffff;
+            border-radius: 10px;
+            padding:15px 0px;
+        }
+        .blog-entry h3{
+            color:#304b65;
+            padding:0px 22px;
+        }
+        .blog-entry h1{
+            color:#304b65;
+            padding:15px 22px;
+            background:E6E6E6;
+        }
+        .blog-entry iframe{
+            padding:15px 22px;
+        }
         #sidebar {
             float: left;
             background: #304b65;

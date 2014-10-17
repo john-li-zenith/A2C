@@ -36,7 +36,8 @@ urlpatterns = patterns(
     url(r'^apps/',include('apps.urls')),
     url(r'^accounts/',include('accounts.urls')),
     url(r'^plan/', include('plans.urls')),
-    url(r'^checkout/', include('paypal_express_checkout.urls')),
+    #url(r'^checkout/', include('paypal_express_checkout.urls')),
+    (r'^checkout/paypal/', include('paypal.standard.ipn.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
         'document_root': os.path.join(BASE_DIR, 'media')}),

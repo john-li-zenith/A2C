@@ -75,6 +75,7 @@ Entry.create_content_type(
         ('default', 'Default position'),
     )
 )
+Entry.create_content_type(RichTextContent)
 
 
 class BlogEntriesNavigationExtension(NavigationExtension):

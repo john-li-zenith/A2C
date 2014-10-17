@@ -10,7 +10,7 @@
 <p><b>Before you upload your app, please make sure you have followed the instructions. Especially, make sure you have integrated app tracking codes
     to your app, otherwise, your app wont be tracked by us. Thanks!</b>
 </p>
-<form enctype="multipart/form-data" action="" method="post">
+<form  enctype="multipart/form-data" action="" method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="Submit" />

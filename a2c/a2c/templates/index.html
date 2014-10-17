@@ -21,23 +21,28 @@
             <div class="navbar">
                 <a href="/"><img src='{{ STATIC_URL }}a2c/img/logo.png'></a>
                 <div id="navigation" class="clearfix">
-                {% feincms_nav feincms_page level=1 depth=2 as navitems %}
-                   {% with navitems|siblings_along_path_to:feincms_page as navtree %}
-                         {% recursetree navtree %}
-                         {% if children %}
-                         <ul class="nav navbar-nav">
-                           <li class="dropdown">
-                          <a class="dropdown-toggle" data-toggle="dropdown" href="{{ node.get_absolute_url }}">{{ node.title }}<b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                             {{ children }}
-                             </ul>
-                             </li>
-                             </ul>
-                             {% else %}
-                             <a {% if node|is_equal_or_parent_of:feincms_page %}class="mark"{% endif %} href="{{ node.get_absolute_url }}">{{ node.title }}</a>
-                              {% endif %}
-                         {% endrecursetree %}
-                    {% endwith %}
+                <!--{% feincms_nav feincms_page level=1 depth=2 as navitems %}-->
+                <!--   {% with navitems|siblings_along_path_to:feincms_page as navtree %}-->
+                <!--         {% recursetree navtree %}-->
+                <!--         {% if children %}-->
+                <!--         <ul class="nav navbar-nav">-->
+                <!--           <li class="dropdown">-->
+                <!--          <a class="dropdown-toggle" data-toggle="dropdown" href="{{ node.get_absolute_url }}">{{ node.title }}<b class="caret"></b></a>-->
+                <!--            <ul class="dropdown-menu">-->
+                <!--             {{ children }}-->
+                <!--             </ul>-->
+                <!--             </li>-->
+                <!--             </ul>-->
+                <!--             {% else %}-->
+                <!--             <a {% if node|is_equal_or_parent_of:feincms_page %}class="mark"{% endif %} href="{{ node.get_absolute_url }}">{{ node.title }}</a>-->
+                <!--              {% endif %}-->
+                <!--         {% endrecursetree %}-->
+                <!--    {% endwith %}-->
+
+                     {% feincms_nav feincms_page level=1 as toplevel %}
+        {% for p in toplevel %}
+        <a {% if p|is_equal_or_parent_of:feincms_page %}class="mark"{% endif %} href="{{ p.get_absolute_url }}">{{ p.title }}</a>
+        {% endfor %}
                  </div>
                
                   

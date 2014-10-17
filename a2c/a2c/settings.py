@@ -68,9 +68,9 @@ INSTALLED_APPS = (
     #'getpaid',
     #'debug_toolbar',
     'storages',
-    #'paypal.standard.ipn',
-    #'paypal.standard.pdt',
-    'paypal_express_checkout',
+    'paypal.standard.ipn',
+    'paypal.standard.pdt',
+    #'paypal_express_checkout',
 )
 
 SITE_ID=1
@@ -166,9 +166,11 @@ CURRENCY = 'USD'
 
 TAX_COUNTRY = 'USA'
 
-DEFAULT_FROM_EMAIL='example@example.com' # need to be changed before production
+DEFAULT_FROM_EMAIL='app2china@gmail.com' # need to be changed before production
 
 #INVOICE_COUNTER_RESET = 'annually'
+
+PLAN_DEFAULT_GRACE_PERIOD = 90
 
 INVOICE_NUMBER_FROMAT = "{{ invoice.number }}/{{ invoice.issued|date='m/FV/Y' }}"
 
@@ -183,11 +185,11 @@ TAX = Decimal(0.00) #for 8.75% VAT
 
 ISSUER_DATA = {
     "issuer_name": "App2China",
-    "issuer_street": "Django street, 34",
-    "issuer_zipcode": "123-3444",
-    "issuer_city": "Djangoko",
-    "issuer_country": "Djangoland",
-    "issuer_tax_number": "1222233334444555",
+    "issuer_street": " ",
+    "issuer_zipcode": " ",
+    "issuer_city": " ",
+    "issuer_country": " ",
+    "issuer_tax_number": " ",
 }
 
 
@@ -217,16 +219,28 @@ if not DEBUG:
 }
     
 
-# Django paypal express checkout
+# # Django paypal express checkout
 
-HOSTNAME = 'http://http://a2c-c9-johnlizenith.c9.io'  # without trailing slash
+# HOSTNAME = 'http://a2c-c9-johnlizenith.c9.io'  # without trailing slash
 
-SALE_DESCRIPTION = 'Your payment to App2China'
+# SALE_DESCRIPTION = 'Your payment to App2China'
 
 
-PAYPAL_USER = 'john.li-facilitator_api1.zen-tec.us'
-PAYPAL_PWD = 'HS97YCWJTFLZX4N8'
-PAYPAL_SIGNATURE = 'AFcWxV21C7fd0v3bYYYRCpSSRl31AvwB3D9piSVkDQrMvBpz09iPKC2-'
+# PAYPAL_USER = 'john.li-facilitator_api1.zen-tec.us'
+# PAYPAL_PWD = 'HS97YCWJTFLZX4N8'
+# PAYPAL_SIGNATURE = 'AFcWxV21C7fd0v3bYYYRCpSSRl31AvwB3D9piSVkDQrMvBpz09iPKC2-'
+
+
+
+# Django Paypal
+
+#PAYPAL_USER = 'paypal-test-seller_api1.zen-tec.us'
+#PAYPAL_PWD = 'WR9N8BPXVYDTJGH4'
+PAYPAL_IDENTITY_TOKEN='AFcWxV21C7fd0v3bYYYRCpSSRl31AnLr3wdzb7hEoE5dEwiG.KjOsc9b'
+PAYPAL_TEST = True
+
+PAYPAL_RECEIVER_EMAIL = 'paypal-test-seller@zen-tec.us'
+
 
 
 try:

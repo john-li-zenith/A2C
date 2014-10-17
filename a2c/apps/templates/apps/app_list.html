@@ -17,11 +17,11 @@
     
     <br/>
     <br/>
-    <p><a href='{% url 'app-update' %}'>Update Your App</a></p>
+    
 {% empty %}
     <li>You have not uploaded any Apps yet!</li>
 {% endfor %}
 </ul>
-
+<p><a href='{% url 'app-update' %}'>Update Your App</a></p>
 
 {% endblock %}

@@ -16,6 +16,7 @@ import requests
 import datetime
 from django.shortcuts import render
 import json
+from django.core.mail import send_mail
 
 
 def get_or_return_none(classobject,**kwags):
@@ -78,6 +79,8 @@ class AppUploadCreateView(CreateView):
         return initial
 
     def get_success_url(self):
+        send_mail(self.request.user.username+' uploaded an app', 'Please go to Admin site to check out.', 'app2china.com',
+    ['app2china@gmail.com'], fail_silently=False)
         return HttpResponseRedirect(reverse('thankyou'))
 
     def get_queryset(self):
@@ -95,6 +98,8 @@ class AppUpdateCreateView(CreateView):
         return initial
 
     def get_success_url(self):
+        send_mail(self.request.user.username+' updated an app', 'Please go to Admin site to check out.', 'app2china.com',
+    ['app2china@gmail.com'], fail_silently=False)
         return reverse('thankyou')
 
     def get_queryset(self):
@@ -144,5 +149,5 @@ def umeng(request,appid):
     newuser_number=return_zero_if_empty(r_newuser_data['data']['all'])
     activeuser_number=return_zero_if_empty(r_activeuser_data['data']['all'])
     lauches_number=return_zero_if_empty(r_launches_data['data']['all'])
-    result="<table border='2' padding='2'><tr><td>No. of New Users</td><td>No. of Active Users</td><td>No. of Launches</td></tr><tr><td>"+newuser_number+"</td><td>"+activeuser_number+"</td><td>"+lauches_number+"</td></tr></table>"
+    result="<div id='plan'><table border='2' padding='2' class='table'><thead><tr><td>No. of New Users</td><td>No. of Active Users</td><td>No. of Launches</td></tr></thead><tbody><tr><td>"+newuser_number+"</td><td>"+activeuser_number+"</td><td>"+lauches_number+"</td></tr></tbody></table></div>"
     return render(request, 'apps/app_track.html', {"result": result})

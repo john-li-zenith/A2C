@@ -6,10 +6,10 @@
         <h1>
             <label><span class="pl invoice_header">{% if invoice.type == invoice.INVOICE_TYPES.INVOICE %}Faktura VAT nr{% endif %}{% if invoice.type == invoice.INVOICE_TYPES.PROFORMA %}Faktura PROFORMA nr{% endif %}{% if invoice.type == invoice.INVOICE_TYPES.DUPLICATE %}Faktura VAT DUPLIKAT nr{% endif %}</span> <span class="en">{% if invoice.type == invoice.INVOICE_TYPES.INVOICE %}Invoice ID{% endif %}{% if invoice.type == invoice.INVOICE_TYPES.PROFORMA %}Order confirmation ID{% endif %}{% if invoice.type == invoice.INVOICE_TYPES.DUPLICATE %}Invoice (duplicate) ID{% endif %}</span></label> <span id="full_number">{{ invoice.full_number }}</span>
         </h1>
-        <h2>{% if not copy %}ORYGINAŁ{% else %}KOPIA{% endif %}</h2>
-        <p> <label><span class="pl">Data wystawienia:</span> <span class="en">Issued</span></label> {{ invoice.issued|date:"Y-m-d" }}</p>
+        <h2>{% if not copy %}ORIGINAL{% else %}COPY{% endif %}</h2>
+        <p> <label><span class="pl">Data :</span> <span class="en">Issued</span></label> {{ invoice.issued|date:"Y-m-d" }}</p>
         {% if invoice.type != invoice.INVOICE_TYPES.PROFORMA %}{# Not a PROFORMA #}
-            <p> <label><span class="pl">Data sprzedaży:</span> <span class="en">Date of order</span></label> {{ invoice.selling_date|date:"Y-m-d" }}</p>
+            <p> <label><span class="pl">Data :</span> <span class="en">Date of order</span></label> {{ invoice.selling_date|date:"Y-m-d" }}</p>
         {% else %}
             <p>&nbsp;</p>
         {% endif %}
@@ -20,7 +20,7 @@
             <td style="width: 50%;">
             </td>
             <td style="width: 50%; padding-right: 4em; font-weight: bold; font-size: 15px;" id="shipping">
-                <strong> <label><span class="pl">Adres wysyłki:</span> <span class="en">Shipping address</span></label></strong><br><br>
+                <strong> <label><span class="pl">Address:</span> <span class="en">Shipping address</span></label></strong><br><br>
 
                 {{ invoice.shipping_name }}<br>
                 {{ invoice.shipping_street }}<br>
@@ -33,7 +33,7 @@
         <tr>
             <td style="width: 50%; 	vertical-align: top;">
 
-                <strong> <label><span class="pl">Sprzedawca:</span> <span class="en">Seller</span></label></strong><br><br>
+                <strong> <label><span class="pl">Seller:</span> <span class="en">Seller</span></label></strong><br><br>
                 {{ invoice.issuer_name }}<br>
                 {{ invoice.issuer_street }}<br>
                 {{ invoice.issuer_zipcode }} {{ invoice.issuer_city}}<br>
@@ -42,7 +42,7 @@
             </td>
             <td style="width: 50%; 	vertical-align: top;">
 
-                <strong> <label><span class="pl">Nabywca:</span> <span class="en">Buyer</span></label></strong><br><br>
+                <strong> <label><span class="pl">Buyer:</span> <span class="en">Buyer</span></label></strong><br><br>
                 {{ invoice.buyer_name }}<br>
                 {{ invoice.buyer_street }}<br>
                 {{ invoice.buyer_zipcode }} {{ invoice.buyer_city }}<br>
@@ -67,33 +67,33 @@
                 <span class="pl">L.p.</span>
             </td>
             <td>
-                <span class="pl">Nazwa&nbsp;usługi</span><br>
+                <span class="pl">Name &nbsp; Services</span><br>
                 <span class="en">Description</span>
 
             </td>
 
             <td>
-                <span class="pl">Cena&nbsp;j.&nbsp;netto</span><br>
+                <span class="pl">App2China</span><br>
                 <span class="en">Unit&nbsp;price</span>
 
             </td>
             <td>
 
-                <span class="pl">Ilość</span><br>
+                <span class="pl">Quantity</span><br>
                 <span class="en">Qty.</span>
             </td>
             <td>
-                <span class="pl">J.m.</span>
+                <span class="pl">App2China</span>
             </td>
             {% if invoice.rebate %}
 
                 <td>
-                    <span class="pl">Rabat</span><br><span class="en">Rebate</span>
+                    <span class="pl">Rebate</span><br><span class="en">Rebate</span>
 
                 </td>
             {%  endif %}
             <td>
-                <span class="pl">Wartość&nbsp;netto</span><br>
+                <span class="pl">App2China</span><br>
                 <span class="en">Subtotal</span>
             </td>
             <td style="width: 3%;">
