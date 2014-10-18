@@ -22,6 +22,7 @@ from plans.models import Quota, Invoice
 from plans.signals import order_started
 from plans.validators import plan_validation
 from django.core.mail import send_mail
+from django.shortcuts import render
 
 from paypal.standard.forms import PayPalPaymentsForm
 
@@ -488,3 +489,20 @@ class FakePaymentsView(LoginRequired, SingleObjectMixin, FormView):
             self.object.save()
             return HttpResponseRedirect(reverse('order_payment_failure', kwargs={'pk': self.object.pk}))
 
+
+def paypal_payment(request,pk):
+    paypal_dict = {
+        "business": settings.PAYPAL_RECEIVER_EMAIL,
+        "amount": Order.objects.get(pk=pk).total(),
+        "item_name": Order.objects.get(pk=pk).name,
+        "invoice": " ",
+        "notify_url": "https://www.example.com" + reverse('paypal-ipn'),
+        "return_url": "https://http://a2c-c9-johnlizenith.c9.io/plan/pricing/",
+        "cancel_return": "https://http://a2c-c9-johnlizenith.c9.io/plan/account/",
+
+    }
+
+    # Create the instance.
+    form = PayPalPaymentsForm(initial=paypal_dict)
+    context = {"form": form}
+    return render(request,"payment.html", context)

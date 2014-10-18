@@ -49,25 +49,29 @@
 
         {% if object.is_ready_for_payment %}
             {% block payment_method %}
+                <form action="" method="post">
+                {% csrf_token %}
+                <a class="btn btn-success" style="float:right" role="button" href="{% url "paypal_payments" pk=object.id %}">Pay with PayPal</a>
+                </form>
 
-                <p>
-                    Here should go bindings to your payment. We recommend using <a
-                        href="https://github.com/cypreess/django-getpaid">django-getpaid</a> for payment processing.
-                    Use a fake payment below to simulate paying for an order:
-                </p>
+                <!--<p>-->
+                <!--    Here should go bindings to your payment. We recommend using <a-->
+                <!--        href="https://github.com/cypreess/django-getpaid">django-getpaid</a> for payment processing.-->
+                <!--    Use a fake payment below to simulate paying for an order:-->
+                <!--</p>-->
 
-                <a class="btn btn-success" role="button" href="{% url "fake_payments" pk=object.id %}">Pay using
-                    FakePayments™ ;)</a>
+                <!--<a class="btn btn-success" role="button" href="{ % url "fake_payments" pk=object.id % }">Pay using-->
+                <!--    FakePayments™ ;)</a>-->
 
-                {#  An example code snippet for accepting payments using django-getpaid #}
+                <!--{#  An example code snippet for accepting payments using django-getpaid #}-->
 
-                {#            <form action="{% url "getpaid-new-payment" currency=object.currency %}" method="post"#}
-                {#                  class="standard_form payment_form">#}
-                {#                {% csrf_token %}#}
-                {#                <ul>{{ payment_form.as_ul }}</ul>#}
-                {#                <p><label>&nbsp;</label><input type="submit" value="{% trans "Pay the order" %}" class="submit_button">#}
-                {#                </p>#}
-                {#            </form>#}
+                <!--{#            <form action="{% url "getpaid-new-payment" currency=object.currency %}" method="post"#}-->
+                <!--{#                  class="standard_form payment_form">#}-->
+                <!--{#                {% csrf_token %}#}-->
+                <!--{#                <ul>{{ payment_form.as_ul }}</ul>#}-->
+                <!--{#                <p><label>&nbsp;</label><input type="submit" value="{% trans "Pay the order" %}" class="submit_button">#}-->
+                <!--{#                </p>#}-->
+                <!--{#            </form>#}-->
 
             {% endblock %}
         {% else %}

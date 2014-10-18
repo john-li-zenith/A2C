@@ -27,6 +27,7 @@ from plans.signals import order_completed, account_activated, account_expired, a
 from .validators import plan_validation
 from plans.taxation.eu import EUTaxationPolicy
 
+from django.core.mail import send_mail
 
 accounts_logger = logging.getLogger('accounts')
 
@@ -456,11 +457,33 @@ class Order(models.Model):
 
     def get_absolute_url(self):
         return reverse('order', kwargs={'pk': self.pk})
+        
+    
+   
 
     class Meta:
         ordering = ('-created', )
         verbose_name = _("Order")
         verbose_name_plural = _("Orders")
+
+
+ # Django paypal signal: sending email notification if successful, otherwise marke order canceled.
+    
+from paypal.standard.ipn.signals import payment_was_successful
+def payment_complete_signal(sender, **kwargs):
+    ipn_obj = sender
+    # You need to check 'payment_status' of the IPN
+
+    if ipn_obj.payment_status == "Completed":
+        # Undertake some action depending upon `ipn_obj`.
+        send_mail('payment received', 'Here is the message.', 'payment@app2china.com',
+    ['app2china@gmail.com'], fail_silently=False)
+    else:
+        pass   
+
+payment_was_successful.connect(payment_complete_signal)
+
+
 
 
 class InvoiceManager(models.Manager):

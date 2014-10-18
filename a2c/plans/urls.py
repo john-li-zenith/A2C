@@ -26,9 +26,6 @@ urlpatterns = patterns(
     url(r'^billing/update/$', BillingInfoUpdateView.as_view(), name='billing_info_update'),
     url(r'^billing/delete/$', BillingInfoDeleteView.as_view(), name='billing_info_delete'),
     url(r'^invoice/(?P<pk>\d+)/preview/html/$', InvoiceDetailView.as_view(), name='invoice_preview_html'),
+    url(r'^payments/(?P<pk>\d+)/$', 'plans.views.paypal_payment', name='paypal_payments'),
 )
 
-if getattr(settings, 'DEBUG', False):
-    urlpatterns += (
-        url(r'^fakepayments/(?P<pk>\d+)/$', FakePaymentsView.as_view(), name='fake_payments'),
-    )
