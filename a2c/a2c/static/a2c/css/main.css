@@ -189,9 +189,19 @@ body {
             font-size: 18px;
             background: rgb(96,150,192);
         }
+
         #plan .current_plan{
             font-size: 14px;
             color: #ffffff;
+            display:block;
+        }
+        #plan .plan_header p{
+            font-size: 14px;
+            color: #ffffff;
+            display:block;
+            margin-bottom:0px;
+            height:12px;
+            font-weight:normal;
         }
         #current th{
             padding: 0px 0px 5px 0px;
@@ -216,6 +226,12 @@ body {
         }
         #plan th{
             width: 25%;
+        }
+        .plan_table{
+            width:100%;
+        }
+        .errorlist{
+            color:rgb(255,49,57);
         }
         form{
             background: #ffffff;
@@ -258,6 +274,23 @@ body {
             width: 100%;
             color:#ffffff;
         }
+        #applist{
+            background:#Ffffff;
+            border-radius: 0px 0px 10px 10px;
+            padding:0px 15px 15px 15px;
+            color:#304b65;
+            font-size:16px;
+            font-weight:bold;
+        }
+        #applist a{
+            color:#000;
+            font-weight:normal;
+        }
+        h1{
+            border-radius: 10px 10px 0px 0px;
+        }
+
+
         .blog-entry{
             background:#ffffff;
             border-radius: 10px;

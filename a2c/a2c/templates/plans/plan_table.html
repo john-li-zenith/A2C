@@ -11,19 +11,16 @@
                 <span class="plan_name">{{  plan.name }}</span>
                 <span class="plan_description">{{ plan.description }}</span>
                 
+                {% if plan == userplan.plan %}
+                    
+                        <p class="current current_plan">your current plan</p>
+                    
+                {%else%}
+                    <p></p>
+                {% endif %}
                
                 {% if plan.url %}</a>{% endif %}
             </th>
-             {% if plan == userplan.plan %}
-    <tr id="current">
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th>                        
-                        <span class="current current_plan">your current plan</span>
-                        </th>
-                        </tr>
-      {% endif %}
         {% endfor %}
     </tr>
    
@@ -93,6 +90,8 @@
                         <span class="plan_pricing_price">{{ plan_pricing.price }}&nbsp;{{ CURRENCY }}</span>
                         {% if plan_pricing.plan == userplan.plan or userplan.is_expired %}
                         <a href="{% url 'create_order_plan' pk=plan_pricing.pk %}" class="buy">{% trans "Buy" %}</a>
+                        {% else %}
+                        <a></a>
                         {% endif %}
                     {% endfor %}
                 </ul>

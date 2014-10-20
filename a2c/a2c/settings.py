@@ -236,11 +236,15 @@ if not DEBUG:
 
 #PAYPAL_USER = 'paypal-test-seller_api1.zen-tec.us'
 #PAYPAL_PWD = 'WR9N8BPXVYDTJGH4'
-PAYPAL_IDENTITY_TOKEN='AFcWxV21C7fd0v3bYYYRCpSSRl31AnLr3wdzb7hEoE5dEwiG.KjOsc9b'
-PAYPAL_TEST = True
+if DEBUG:
+    PAYPAL_IDENTITY_TOKEN='AFcWxV21C7fd0v3bYYYRCpSSRl31AnLr3wdzb7hEoE5dEwiG.KjOsc9b'
+    PAYPAL_TEST = True
+    PAYPAL_RECEIVER_EMAIL = 'paypal-test-seller@zen-tec.us'
 
-PAYPAL_RECEIVER_EMAIL = 'paypal-test-seller@zen-tec.us'
-
+if not DEBUG:
+    PAYPAL_IDENTITY_TOKEN=os.environ['PAYPAL_IDENTITY_TOKEN']
+    PAYPAL_TEST = False
+    PAYPAL_RECEIVER_EMAIL = os.environ['PAYPAL_RECEIVER_EMAIL']
 
 
 try:

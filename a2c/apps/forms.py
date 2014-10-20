@@ -24,6 +24,12 @@ class AppUpdateForm(ModelForm):
         model=AppUpdate
         widgets={'user': forms.HiddenInput()}
         
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user', None)
+        super(AppUpdateForm, self).__init__(*args, **kwargs)
+        self.fields['app'].queryset = App.objects.filter(user=self.user)
+        
+        
         
     def clean(self):
         cleaned_data = super(AppUpdateForm, self).clean()

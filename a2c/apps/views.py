@@ -105,6 +105,11 @@ class AppUpdateCreateView(CreateView):
     def get_queryset(self):
         return super(AppUpdateCreateView, self).get_queryset().filter(user=self.request.user) 
         
+    def get_form_kwargs(self):
+        kwargs = super(AppUpdateCreateView, self ).get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
+
        
         
 # @login_required
@@ -149,5 +154,5 @@ def umeng(request,appid):
     newuser_number=return_zero_if_empty(r_newuser_data['data']['all'])
     activeuser_number=return_zero_if_empty(r_activeuser_data['data']['all'])
     lauches_number=return_zero_if_empty(r_launches_data['data']['all'])
-    result="<div id='plan'><table border='2' padding='2' class='table'><thead><tr><td>No. of New Users</td><td>No. of Active Users</td><td>No. of Launches</td></tr></thead><tbody><tr><td>"+newuser_number+"</td><td>"+activeuser_number+"</td><td>"+lauches_number+"</td></tr></tbody></table></div>"
+    result="<div id='plan'><table border='2' padding='2' class='table'><thead><tr><td>No. of New Users</td><td>No. of Active Users</td><td>No. of Launches</td></tr></thead><tbody><tr><td>"+str(newuser_number[0])+"</td><td>"+str(activeuser_number[0])+"</td><td>"+str(lauches_number[0])+"</td></tr></tbody></table></div>"
     return render(request, 'apps/app_track.html', {"result": result})

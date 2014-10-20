@@ -469,19 +469,19 @@ class Order(models.Model):
 
  # Django paypal signal: sending email notification if successful, otherwise marke order canceled.
     
-from paypal.standard.ipn.signals import payment_was_successful
-def payment_complete_signal(sender, **kwargs):
-    ipn_obj = sender
-    # You need to check 'payment_status' of the IPN
+# from paypal.standard.ipn.signals import payment_was_successful
+# def payment_complete_signal(sender, **kwargs):
+#     ipn_obj = sender
+#     # You need to check 'payment_status' of the IPN
 
-    if ipn_obj.payment_status == "Completed":
-        # Undertake some action depending upon `ipn_obj`.
-        send_mail('payment received', 'Here is the message.', 'payment@app2china.com',
-    ['app2china@gmail.com'], fail_silently=False)
-    else:
-        pass   
+#     if ipn_obj.payment_status == "Completed":
+#         # Undertake some action depending upon `ipn_obj`.
+#         send_mail('payment received', 'Here is the message.', 'payment@app2china.com',
+#     ['app2china@gmail.com'], fail_silently=False)
+#     else:
+#         pass   
 
-payment_was_successful.connect(payment_complete_signal)
+# payment_was_successful.connect(payment_complete_signal)
 
 
 

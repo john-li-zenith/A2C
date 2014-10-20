@@ -4,7 +4,9 @@
 {% block child%}
 {% include 'accounts/dash_navi.html' %}
 {% endblock %}
+
 <h1>Apps</h1>
+<div id="applist">
 <ul>
 {% for app in object_list %}
     <li>{{ app.name }} - uploaded on {{ app.uploaded|date }}</li>
@@ -16,12 +18,12 @@
     <p><a href = '{% url 'applog' app.id %}'>App logs (user review + copyright protection)</a></p>
     
     <br/>
-    <br/>
+    
     
 {% empty %}
     <li>You have not uploaded any Apps yet!</li>
 {% endfor %}
 </ul>
-<p><a href='{% url 'app-update' %}'>Update Your App</a></p>
-
+<button><a href='{% url 'app-update' %}'>Update Your App</a></button>
+</div>
 {% endblock %}
