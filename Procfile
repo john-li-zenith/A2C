@@ -1,1 +1,1 @@
-web: gunicorn a2c.wsgi --log-file -
+web: gunicorn a2c.a2c.wsgi --log-file -
