@@ -263,7 +263,7 @@ if not DEBUG:
     # Allow all host headers
     ALLOWED_HOSTS = ['*']
     
-   import os
+    import os
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
     STATIC_ROOT = 'staticfiles'
     STATIC_URL = '/static/'
