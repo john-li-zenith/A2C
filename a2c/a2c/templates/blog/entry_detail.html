@@ -1,11 +1,12 @@
 {% load i18n %}
 {% load feincms_tags applicationcontent_tags %}
 
-<div class="blog-entry">
+<div class="blog-detail">
     <h3>{{object.title}}</h3>
     {% feincms_render_region object "main" request %}
 </div>
-
-<p>
-    <a href="{% app_reverse "blog_entry_list" request %}">{% trans "All entries" %}</a>
-</p>
+<br/>
+<br/>
+<div style="float: right;">
+    <a href="{% app_reverse "blog_entry_list" request %}"><button>{% trans "Back to blog list" %}</button></a>
+</div>

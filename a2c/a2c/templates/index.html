@@ -57,7 +57,7 @@
                         <li class="dropdown">
                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">PROFILE <b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="/plan/account/">Your account</a></li>
+                                <li><a href="/plan/account/">My account</a></li>
                                 <li><a href='{% url 'dash' %}'>Dashboard</a></li>
                                 <li><a href='/plan/pricing/'>Plan</a></li>
                                 <li><a href="/plan/upgrade/">Upgrade plan</a></li>
@@ -111,6 +111,7 @@
                         $('#carousel').slick({
                         prevArrow:"<i class='fa fa-angle-left fa-5x pre'></i>",
                         nextArrow:"<i class='fa fa-angle-right fa-5x nex'></i>",
+                        dots: true,
                     });
                     }
                     else{
@@ -119,6 +120,7 @@
                     
                 });
            </script>
+           
                
             </body>
             

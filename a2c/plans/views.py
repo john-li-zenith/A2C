@@ -497,8 +497,8 @@ def paypal_payment(request,pk):
         "item_name": Order.objects.get(pk=pk).name,
         "invoice": " ",
         "notify_url": "https://www.example.com" + reverse('paypal-ipn'),
-        "return_url": "https://http://a2c-c9-johnlizenith.c9.io/plan/pricing/",
-        "cancel_return": "https://http://a2c-c9-johnlizenith.c9.io/plan/account/",
+        "return_url": "https://a2c-c9-johnlizenith.c9.io/",
+        "cancel_return": "https://a2c-c9-johnlizenith.c9.io/plan/account/",
 
     }
 

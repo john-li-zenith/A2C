@@ -32,7 +32,7 @@
                         <li class="dropdown">
                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">PROFILE <b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="/plan/account/">Your account</a></li>
+                                <li><a href="/plan/account/">My account</a></li>
                                 <li><a href='{% url 'dash' %}'>Dashboard</a></li>
                                 <li><a href='/plan/pricing/'>Plan</a></li>
                                 <li><a href="/plan/upgrade/">Upgrade plan</a></li>
@@ -77,10 +77,15 @@
     
             
             
+           <script type="text/javascript" >
+               $('#main p a').click(function() {
+  $(this).attr('target', '_blank');
+}); 
+           </script>
            
 
            
                
             </body>
-            
+           
         </html>

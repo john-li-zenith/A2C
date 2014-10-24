@@ -7,23 +7,24 @@
 
 <h1>Apps</h1>
 <div id="applist">
-<ul>
+
 {% for app in object_list %}
-    <li>{{ app.name }} - uploaded on {{ app.uploaded|date }}</li>
-    <p>Category:</p> <p>{{ app.category.name }}</p>
-    <p> {{ app.description_long }}</p>
+<table border="2">
+    <tr><td colspan="2"><p>{{ app.name }} - uploaded on {{ app.uploaded|date }}</p></td></tr>
+    <tr><td><p>Category:</p></td><td><p>{% if app.category.name %}{{app.category.name}}{%else%}Not Catogorized{% endif%}</p></td></tr>
+    <tr><td colspan="2"><p>{{ app.description_short }}</p></td></tr>
     
-    <a href='{% url 'app-track' app.id %}'><button>Download Tracking (Umeng)</button></a>
+    <tr><td colspan="2"><a href='{% url 'app-track' app.id %}'><button>App Downloads Tracking</button></a></td></tr>
     
-    <p><a href = '{% url 'applog' app.id %}'>App logs (user review + copyright protection)</a></p>
-    
+    <tr><td colspan="2"><p><a href = '{% url 'applog' app.id %}'>App logs (user review + copyright protection)</a></p></td></tr>
+</table> 
     <br/>
     
     
 {% empty %}
-    <li>You have not uploaded any Apps yet!</li>
+    <p>You have not uploaded any Apps yet!</p>
 {% endfor %}
-</ul>
+
 <button><a href='{% url 'app-update' %}'>Update Your App</a></button>
 </div>
 {% endblock %}

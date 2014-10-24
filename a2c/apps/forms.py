@@ -5,6 +5,8 @@ from django import forms
 
 
 class AppForm(ModelForm):
+    description_short=forms.CharField(widget=forms.Textarea(attrs={'cols': 80, 'rows': 20}))
+    description_long=forms.CharField(widget=forms.Textarea(attrs={'cols': 80, 'rows': 20}))
     
     class Meta:
         model = App
@@ -19,6 +21,7 @@ class AppForm(ModelForm):
         
         
 class AppUpdateForm(ModelForm):
+    description=forms.CharField(widget=forms.Textarea(attrs={'cols': 80, 'rows': 20}))
     
     class Meta:
         model=AppUpdate

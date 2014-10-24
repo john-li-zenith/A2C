@@ -71,11 +71,12 @@ class StandardPlanChangePolicy(PlanChangePolicy):
                 days_left * cost_diff_per_day * upgrade_percent_rate + constant_upgrade_charge
     """
 
-    UPGRADE_PERCENT_RATE = Decimal('0.0')
-    UPGRADE_CHARGE = Decimal('0.0')
+    UPGRADE_PERCENT_RATE = Decimal('10.0')
+    UPGRADE_CHARGE = Decimal('10.0')
     DOWNGRADE_CHARGE = None
     FREE_UPGRADE = Decimal('0.0')
-
+    
+    
     def _calculate_final_price(self, period, day_cost_diff):
         if day_cost_diff is None:
             return self.DOWNGRADE_CHARGE

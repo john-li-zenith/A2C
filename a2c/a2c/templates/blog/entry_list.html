@@ -1,7 +1,7 @@
 {% load applicationcontent_tags %}
 
-<div id="blog" style="width: 50%; margin: 0 auto;">
+<div class="blog-entry" >
 {% for object in object_list %}
-<p><h3><a href="{% app_reverse "blog_entry_detail" "blog_urls" pk=object.id %}">{{ object.title }}</a></h3>published on {{ object.published_on }}</p>
+<table><tr><td><h3><a href="{% app_reverse "blog_entry_detail" "blog_urls" pk=object.id %}">{{ object.title }}</font></a></td><td style="float:right; width:400px;"><font color="grey">published on {{ object.published_on }}</font></td></tr></table>
 {% endfor %}
 </div>

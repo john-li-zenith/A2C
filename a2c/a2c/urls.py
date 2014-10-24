@@ -31,6 +31,8 @@ admin.autodiscover()
 
 urlpatterns = patterns(
     '',
+    url(r'^accounts/logout/$', 'django.contrib.auth.views.logout',
+                          {'next_page': '/'}),
     url(r'^accounts/', include('registration.backends.default.urls')),
     url(r'^accounts/', include('django.contrib.auth.urls')),
     url(r'^apps/',include('apps.urls')),

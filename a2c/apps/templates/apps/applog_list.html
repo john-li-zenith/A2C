@@ -4,7 +4,7 @@
 {% block child%}
 {% include 'accounts/dash_navi.html' %}
 {% endblock %}
-<div id="applist">
+<div id="applist" style="width: 50%; margin: 0 auto;">
 <h1>App Name : {{ app }}</h1>
 <ul>
  {% for type in types %}
@@ -18,10 +18,14 @@
        {% if applog.image %}
        <p>Screenshot:
        <a href='{{ applog.image.url }}'>click here</a></p>
+       
        {% endif %}
+       <p>--------------------------</p>
     </li><br/>
      {% endif %}
+     
      {% endfor %}
+     
 {% endfor %}
 {% empty %}
     <li>There is no log for this App yet.</li>

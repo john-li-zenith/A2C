@@ -290,15 +290,27 @@ body {
             border-radius: 10px 10px 0px 0px;
         }
 
-
+        .blog-detail{
+            background:#ffffff;
+            border-radius: 10px;
+            padding:0px 0px 15px 15px;
+            width:100%;
+            color:rgb(100,100,100);
+        }
+        .blog-detail h3{
+            margin:0px;
+            
+        }
         .blog-entry{
             background:#ffffff;
             border-radius: 10px;
             padding:15px 0px;
+            width:100%;
         }
         .blog-entry h3{
             color:#304b65;
-            padding:0px 22px;
+            padding:0px 32px;
+            margin-top:7px;
         }
         .blog-entry h1{
             color:#304b65;
@@ -307,6 +319,21 @@ body {
         }
         .blog-entry iframe{
             padding:15px 22px;
+        }
+        
+        .blog-entry table{
+            width:1280px;
+        }
+        .blog-entry table td h3 a{
+            color:rgb(190,60,80);
+        }
+        .blog-entry table tbody:hover{
+            background:rgb(243,243,252);
+            -webkit-transition: all 200ms ease-in;
+            -moz-transition: all 200ms ease-in;
+            -ms-transition: all 200ms ease-in;
+            -o-transition: all 200ms ease-in;
+            transition: all 200ms ease-in;
         }
         #sidebar {
             float: left;
@@ -333,3 +360,12 @@ body {
         * html .clearfix {
             height: 1%;
         }
+        
+        input, select, textarea{
+         color: black;
+        }
+
+        textarea:focus, input:focus {
+         color: black;
+        }
+        

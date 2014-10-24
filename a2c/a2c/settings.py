@@ -17,7 +17,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
@@ -26,7 +26,7 @@ if not DEBUG:
 
 
 
-TEMPLATE_DEBUG = True
+TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = []
 
@@ -69,7 +69,7 @@ INSTALLED_APPS = (
     #'debug_toolbar',
     'storages',
     'paypal.standard.ipn',
-    'paypal.standard.pdt',
+    #'paypal.standard.pdt',
     #'paypal_express_checkout',
 )
 
@@ -213,6 +213,8 @@ if not DEBUG:
     
     AWS_STORAGE_BUCKET_NAME='app2china'
     
+    STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+    
     AWS_HEADERS = {
     'Expires': 'Thu, 15 Apr 2010 20:00:00 GMT',
     'Cache-Control': 'max-age=86400',
@@ -225,26 +227,45 @@ if not DEBUG:
 
 # SALE_DESCRIPTION = 'Your payment to App2China'
 
-
-# PAYPAL_USER = 'john.li-facilitator_api1.zen-tec.us'
-# PAYPAL_PWD = 'HS97YCWJTFLZX4N8'
-# PAYPAL_SIGNATURE = 'AFcWxV21C7fd0v3bYYYRCpSSRl31AvwB3D9piSVkDQrMvBpz09iPKC2-'
+if DEBUG:
+    PAYPAL_RECEIVER_EMAIL = 'john.li-facilitator_api1.zen-tec.us'
+    # PAYPAL_PWD = 'HS97YCWJTFLZX4N8'
+    PAYPAL_IDENTITY_TOKEN = 'AFcWxV21C7fd0v3bYYYRCpSSRl31AvwB3D9piSVkDQrMvBpz09iPKC2-'
 
 
 
 # Django Paypal
 
-#PAYPAL_USER = 'paypal-test-seller_api1.zen-tec.us'
-#PAYPAL_PWD = 'WR9N8BPXVYDTJGH4'
-if DEBUG:
-    PAYPAL_IDENTITY_TOKEN='AFcWxV21C7fd0v3bYYYRCpSSRl31AnLr3wdzb7hEoE5dEwiG.KjOsc9b'
-    PAYPAL_TEST = True
-    PAYPAL_RECEIVER_EMAIL = 'paypal-test-seller@zen-tec.us'
-
 if not DEBUG:
     PAYPAL_IDENTITY_TOKEN=os.environ['PAYPAL_IDENTITY_TOKEN']
     PAYPAL_TEST = False
     PAYPAL_RECEIVER_EMAIL = os.environ['PAYPAL_RECEIVER_EMAIL']
+
+# Sendgrid
+
+if not DEBUG:
+    EMAIL_HOST = 'smtp.sendgrid.net'
+    EMAIL_HOST_USER = os.environ['SENDGRID_USERNAME']
+    EMAIL_HOST_PASSWORD = os.environ['SENDGRID_PASSWORD']
+    EMAIL_PORT = 587
+    EMAIL_USE_TLS = True
+    
+
+# Heroku settings
+if not DEBUG:
+    # Parse database configuration from $DATABASE_URL
+    import dj_database_url
+    DATABASES['default'] =  dj_database_url.config()
+
+    # Honor the 'X-Forwarded-Proto' header for request.is_secure()
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+    # Allow all host headers
+    ALLOWED_HOSTS = ['*']
+    
+    STATIC_ROOT = 'staticfiles'
+    STATIC_URL = '/static/'
+
 
 
 try:
