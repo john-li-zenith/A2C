@@ -17,7 +17,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
@@ -28,7 +28,7 @@ if not DEBUG:
 
 TEMPLATE_DEBUG = DEBUG
 
-ALLOWED_HOSTS = [*]
+ALLOWED_HOSTS = []
 
 
 
