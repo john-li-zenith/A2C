@@ -213,7 +213,7 @@ if not DEBUG:
     
     AWS_STORAGE_BUCKET_NAME='app2china'
     
-    #STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+    STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
     AWS_QUERYSTRING_AUTH = False
     
     AWS_HEADERS = {
