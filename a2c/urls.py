@@ -41,8 +41,8 @@ urlpatterns = patterns(
     
     (r'^plan/paypal/', include('paypal.standard.ipn.urls')),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
-        'document_root': os.path.join(BASE_DIR, 'media')}),
+    #url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
+    #    'document_root': os.path.join(BASE_DIR, 'media')}),
     url(r'', include('feincms.contrib.preview.urls')),
     url(r'', include('feincms.urls'))
 ) #+ staticfiles_urlpatterns()

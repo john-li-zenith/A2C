@@ -213,20 +213,15 @@ if not DEBUG:
     
     AWS_STORAGE_BUCKET_NAME='app2china'
     
-    STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+    #STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
     AWS_QUERYSTRING_AUTH = False
     
     AWS_HEADERS = {
-    'Expires': 'Thu, 15 Apr 2010 20:00:00 GMT',
-    'Cache-Control': 'max-age=86400',
+        'Expires': 'Thu, 15 Apr 2020 20:00:00 GMT',
+        'Cache-Control': 'max-age=86400',
     }
     
 
-# # Django paypal express checkout
-
-# HOSTNAME = 'http://a2c-c9-johnlizenith.c9.io'  # without trailing slash
-
-# SALE_DESCRIPTION = 'Your payment to App2China'
 
 if DEBUG:
     PAYPAL_RECEIVER_EMAIL = 'john.li-facilitator_api1.zen-tec.us'
